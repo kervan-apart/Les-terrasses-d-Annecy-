@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Studio Semnoz - Les Terrasses d'Annecy. 22 m², rez-de-jardin, terrasse privative fermée 25 m², garage privatif. 2 personnes. Location à la semaine.">
+    <meta name="keywords" content="studio Annecy location, Studio Semnoz, terrasse privative Annecy, location semaine Annecy, Les Terrasses d'Annecy">
+    <title>Studio Semnoz | Les Terrasses d'Annecy</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --mediterranean-blue: #0066cc;
+            --turquoise: #1b9aaa;
+            --sand: #f5e6d3;
+            --terracotta: #d4745f;
+            --deep-blue: #1e5a8e;
+            --warm-white: #fafaf8;
+            --olive: #7a8450;
+            --sunset: #ff6b35;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background: var(--warm-white); }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--deep-blue); font-weight: 700; }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            padding: 1rem 2rem; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: var(--deep-blue); font-weight: 600; transition: color 0.3s; font-size: 1rem; }
+        nav a:hover { color: var(--turquoise); }
+        nav .back-link { color: var(--turquoise); }
+
+        .hero {
+            position: relative; height: 70vh;
+            background: linear-gradient(135deg, var(--mediterranean-blue) 0%, var(--turquoise) 100%);
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+        }
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255,107,53,0.15) 0%, transparent 50%);
+            animation: waves 15s ease-in-out infinite;
+        }
+        @keyframes waves { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 2rem; animation: fadeInUp 1s ease-out; }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+        .hero-badge {
+            display: inline-block; background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4); padding: 0.4rem 1.2rem;
+            border-radius: 20px; font-size: 0.95rem; margin-bottom: 1rem;
+        }
+        .hero h1 { font-size: 3.5rem; color: white; margin-bottom: 1rem; text-shadow: 2px 4px 8px rgba(0,0,0,0.2); }
+        .hero-subtitle { font-size: 1.2rem; font-weight: 300; margin-bottom: 1.5rem; }
+        .hero-features { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .hero-feature { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; }
+        .hero-feature::before {
+            content: '✓'; background: rgba(255,255,255,0.3); width: 26px; height: 26px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block; padding: 1.1rem 2.5rem; background: var(--sunset); color: white;
+            text-decoration: none; border-radius: 50px; font-size: 1.1rem; font-weight: 700;
+            transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,107,53,0.4); background: #ff5722; }
+
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        .section-title {
+            font-size: 2.5rem; text-align: center; margin-bottom: 1rem;
+            position: relative; padding-bottom: 1.5rem;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px;
+            background: linear-gradient(90deg, var(--turquoise), var(--mediterranean-blue)); border-radius: 2px;
+        }
+        .section-subtitle { text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        /* Slider */
+        .photo-slider { position: relative; height: 550px; overflow: hidden; }
+        .slider-container { display: flex; transition: transform 0.5s ease; height: 100%; }
+        .slide { min-width: 100%; height: 100%; position: relative; background: linear-gradient(135deg, var(--mediterranean-blue), var(--turquoise)); }
+        .slide img { width: 100%; height: 100%; object-fit: cover; }
+        .slide-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 1.4rem; text-align: center; opacity: 0.8; }
+        .slider-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top,rgba(0,0,0,0.75),transparent); color: white; padding: 2.5rem 2rem 1.5rem; text-align: center; }
+        .slider-caption h3 { color: white; font-size: 1.5rem; margin-bottom: 0.3rem; }
+        .slider-nav { position: absolute; top: 50%; width: 100%; display: flex; justify-content: space-between; padding: 0 1.5rem; transform: translateY(-50%); pointer-events: none; z-index: 10; }
+        .slider-btn { pointer-events: all; background: rgba(255,255,255,0.9); border: none; width: 46px; height: 46px; border-radius: 50%; cursor: pointer; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .slider-btn:hover { background: white; transform: scale(1.1); }
+        .slider-dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 10; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s; }
+        .dot.active { background: white; transform: scale(1.3); }
+
+        /* About */
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .about-card { background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s,box-shadow 0.3s; }
+        .about-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.11); }
+        .about-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--mediterranean-blue); }
+        .about-card p { color: #555; line-height: 1.9; }
+
+        /* Équipements */
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .amenity-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.3rem; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); transition: all 0.3s; }
+        .amenity-item:hover { transform: translateX(4px); box-shadow: 0 5px 18px rgba(0,0,0,0.1); }
+        .amenity-icon { font-size: 1.8rem; min-width: 36px; }
+        .amenity-content h4 { margin-bottom: 0.3rem; color: var(--deep-blue); font-size: 1rem; }
+        .amenity-content p { color: #666; font-size: 0.9rem; }
+
+        /* Localisation */
+        .location { background: var(--deep-blue); color: white; }
+        .location .section-title, .location .section-subtitle { color: white; }
+        .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 2rem; margin-top: 3rem; }
+        .location-item { background: rgba(255,255,255,0.1); padding: 1.8rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); }
+        .location-item h4 { color: var(--turquoise); margin-bottom: 0.8rem; font-size: 1.2rem; }
+        .location-item ul { list-style: none; }
+        .location-item li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
+        .location-item li:last-child { border-bottom: none; }
+
+        /* Tarifs */
+        .pricing { background: var(--sand); }
+        .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .season-card { background: white; border-radius: 14px; padding: 1.8rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
+        .season-card.low    { border-top: 4px solid var(--olive); }
+        .season-card.mid    { border-top: 4px solid var(--turquoise); }
+        .season-card.high   { border-top: 4px solid var(--sunset); }
+        .season-card.very-high { border-top: 4px solid var(--terracotta); }
+        .season-label { font-size: 0.82rem; color: #888; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .season-price { font-size: 2.2rem; font-weight: 700; color: var(--deep-blue); }
+        .season-price-unit { font-size: 0.88rem; color: #888; margin-top: 0.3rem; }
+        .season-period { font-size: 0.88rem; color: #666; margin-top: 0.8rem; line-height: 1.5; }
+        .pricing-note { max-width: 700px; margin: 2rem auto 0; padding: 1.5rem; background: white; border-radius: 10px; font-size: 0.95rem; color: #555; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,0.05); }
+
+        /* Calendrier */
+        .calendar-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .year-selector { display: flex; align-items: center; gap: 1rem; }
+        .year-btn { background: var(--mediterranean-blue); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
+        .year-btn:hover { background: var(--turquoise); transform: translateY(-2px); }
+        .current-year { font-size: 1.8rem; font-weight: 700; color: var(--deep-blue); }
+        .calendar-legend { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; }
+        .legend-color { width: 26px; height: 26px; border-radius: 6px; border: 2px solid #ddd; }
+        .legend-available { background: white; }
+        .legend-booked { background: #ff7f7f; border-color: #ff7f7f; }
+        .legend-selected { background: var(--turquoise); border-color: var(--turquoise); }
+        .legend-festival { background: var(--terracotta); border-color: var(--terracotta); }
+        .months-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2rem; margin-top: 2rem; }
+        .month-calendar { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 1.5rem; box-shadow: 0 3px 10px rgba(0,0,0,0.05); }
+        .month-header { text-align: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--turquoise); }
+        .month-name { font-size: 1.2rem; font-weight: 700; color: var(--deep-blue); }
+        .weekdays { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; margin-bottom: 0.5rem; }
+        .weekday { text-align: center; font-size: 0.78rem; font-weight: 600; color: #666; padding: 0.3rem; }
+        .days { display: grid; grid-template-columns: repeat(7,1fr); gap: 3px; }
+        .day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid #e0e0e0; border-radius: 6px; cursor: default; transition: all 0.2s; font-size: 0.85rem; background: white; }
+        .day.saturday { font-weight: 700; border-color: var(--mediterranean-blue); cursor: pointer; }
+        .day.saturday:hover:not(.booked):not(.past):not(.festival) { background: #e3f2fd; transform: scale(1.05); border-color: var(--turquoise); }
+        .day.other { color: #bbb; }
+        .day.empty { cursor: default; border: none; }
+        .day.past { color: #ccc; cursor: not-allowed; background: #f9f9f9; }
+        .day.booked { background: #ff7f7f; color: white; cursor: not-allowed; font-weight: 600; border-color: #ff7f7f; }
+        .day.festival { background: var(--terracotta); color: white; cursor: pointer; font-weight: 600; border-color: var(--terracotta); }
+        .day.selected { background: var(--turquoise); color: white; font-weight: 700; border-color: var(--turquoise); }
+        .day.in-range { background: rgba(27,154,170,0.2); border-color: var(--turquoise); }
+
+        .selection-info { margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg,#e3f2fd 0%,#fff 100%); border-radius: 12px; text-align: center; }
+        .selection-info h3 { color: var(--deep-blue); margin-bottom: 1rem; }
+        .date-display { font-size: 1.1rem; color: #666; margin: 0.4rem 0; }
+        .date-display strong { color: var(--turquoise); font-size: 1.2rem; }
+        .clear-btn { margin-top: 1rem; padding: 0.7rem 1.8rem; background: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 600; transition: all 0.3s; }
+        .clear-btn:hover { background: #d32f2f; transform: translateY(-2px); }
+
+        /* Contact */
+        .contact-form { max-width: 600px; margin: 3rem auto 0; background: white; padding: 3rem; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.08); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--deep-blue); font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Lato',sans-serif; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--turquoise); }
+        .form-group textarea { resize: vertical; min-height: 130px; }
+        .submit-button { width: 100%; padding: 1.1rem; background: var(--mediterranean-blue); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
+        .submit-button:hover { background: var(--turquoise); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,188,212,0.3); }
+
+        /* Nav studios */
+        .studio-nav { background: var(--sand); padding: 2rem; text-align: center; }
+        .studio-nav-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
+        .studio-nav-link { padding: 0.8rem 1.8rem; border: 2px solid var(--mediterranean-blue); color: var(--mediterranean-blue); text-decoration: none; border-radius: 30px; font-weight: 600; transition: all 0.3s; }
+        .studio-nav-link:hover, .studio-nav-link.active { background: var(--mediterranean-blue); color: white; }
+
+        footer { background: var(--deep-blue); color: white; text-align: center; padding: 2rem; }
+        footer p { margin: 0.5rem 0; opacity: 0.8; }
+        footer a { color: var(--turquoise); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .hero { height: auto; min-height: 80vh; padding: 6rem 1rem 3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-features { flex-direction: column; gap: 0.6rem; }
+            .photo-slider { height: 320px; }
+            .section-title { font-size: 1.8rem; }
+            section { padding: 3rem 1rem; }
+            .months-grid { grid-template-columns: 1fr; }
+            .calendar-controls { flex-direction: column; align-items: stretch; }
+            .pricing-cards { grid-template-columns: repeat(2,1fr); }
+            .contact-form { padding: 1.5rem; }
+        }
+
+        /* Hero logo */
+        .hero-logo {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 2rem;
+            z-index: 10;
+            animation: fadeInLeft 1s ease-out;
+        }
+        .hero-logo img {
+            height: 180px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+            transition: transform 0.3s ease;
+        }
+        .hero-logo img:hover { transform: scale(1.05); }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px) translateY(-50%); }
+            to   { opacity: 1; transform: translateX(0) translateY(-50%); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .hero-logo {
+                position: relative;
+                top: auto; left: auto;
+                transform: none;
+                text-align: center;
+                margin-bottom: 1.5rem;
+                animation: fadeInDown 1s ease-out;
+            }
+            .hero-logo img { height: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sélecteur de langue -->
+<div style="position:fixed;top:20px;right:20px;z-index:1001;background:white;padding:8px 10px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
+    <select onchange="window.location.href=this.value" style="padding:6px 10px;border:2px solid #1b9aaa;border-radius:6px;font-size:14px;cursor:pointer;background:white;">
+        <option value="studio-semnoz.html" selected>🇫🇷 Français</option>
+        <option value="studio-semnoz-EN.html">🇬🇧 English</option>
+    </select>
+</div>
+
+<!-- Navigation -->
+<nav>
+    <ul>
+                <li><a href="index-FR.html" class="back-link">← Accueil</a></li>
+        <li><a href="#studio">Le Studio</a></li>
+        <li><a href="#localisation">Localisation</a></li>
+        <li><a href="#tarifs">Tarifs &amp; Disponibilités</a></li>
+        <li><a href="#contact">Réserver</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section id="studio" class="hero" style="max-width:100%;padding:0;">
+    <!-- Logo -->
+    <div class="hero-logo">
+        <img src="images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">Les Terrasses d'Annecy</div>
+        <h1>Studio Semnoz</h1>
+        <p class="hero-subtitle">· 22 m² · Rez-de-jardin · Terrasse privative fermée de 25 m² ·</p>
+        <div class="hero-features">
+            <div class="hero-feature">2 personnes</div>
+            <div class="hero-feature">Terrasse 25 m²</div>
+            <div class="hero-feature">Garage privatif</div>
+            <div class="hero-feature">Exposition Ouest</div>
+        </div>
+        <a href="#tarifs" class="cta-button">Voir les tarifs</a>
+    </div>
+</section>
+
+<!-- Slider photos -->
+<div style="background:white;margin-top:-2rem;">
+    <div class="photo-slider">
+        <div class="slider-container" id="sliderContainer">
+            <div class="slide">
+                <img src="images/semnoz-terrasse.jpg" alt="Terrasse Studio Semnoz" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Terrasse privative — 25 m²</div>
+                <div class="slider-caption"><h3>Terrasse privative fermée — 25 m²</h3><p>Coin repas ombragé · Salon de jardin · Exposition Ouest</p></div>
+            </div>
+            <div class="slide">
+                <img src="images/semnoz-sejour.jpg" alt="Séjour" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Séjour</div>
+                <div class="slider-caption"><h3>Séjour lumineux</h3><p>Canapé-lit BZ confortable pour 2 personnes</p></div>
+            </div>
+            <div class="slide">
+                <img src="images/semnoz-cuisine.jpg" alt="Cuisine" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Cuisine équipée</div>
+                <div class="slider-caption"><h3>Cuisine équipée</h3><p>Plaque induction · Réfrigérateur · Micro-ondes</p></div>
+            </div>
+            <div class="slide">
+                <img src="images/semnoz-salle-eau.jpg" alt="Salle d'eau" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Salle d'eau</div>
+                <div class="slider-caption"><h3>Salle d'eau</h3><p>Douche · WC · Lavabo</p></div>
+            </div>
+        </div>
+        <div class="slider-nav">
+            <button class="slider-btn" onclick="previousSlide()">‹</button>
+            <button class="slider-btn" onclick="nextSlide()">›</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+    </div>
+</div>
+
+<!-- À propos -->
+<section id="apropos">
+    <h2 class="section-title">Le Studio Semnoz</h2>
+    <p class="section-subtitle">Un studio cosy avec une grande terrasse privative, idéal pour un séjour en duo</p>
+    <div class="about-grid">
+        <div class="about-card">
+            <h3>🏡 Le Studio</h3>
+            <p>&#x2022; <strong>22 m²</strong> entièrement équipés, en rez-de-jardin<br>
+            &#x2022; Canapé-lit <strong>BZ confortable</strong> pour 2 personnes<br>
+            &#x2022; Cuisine équipée avec <strong>plaque induction</strong><br>
+            &#x2022; Salle d'eau avec <strong>douche et WC</strong><br>
+            &#x2022; Exposition <strong>Ouest</strong> — belles lumières en fin de journée</p>
+        </div>
+        <div class="about-card">
+            <h3>🌿 Votre Terrasse</h3>
+            <p>&#x2022; Terrasse privative <strong>fermée de 25 m²</strong><br>
+            &#x2022; Coin repas <strong>ombragé</strong> — idéal pour dîner dehors<br>
+            &#x2022; Salon de jardin<br>
+            &#x2022; Accès direct depuis le studio<br>
+            &#x2022; Cadre verdoyant et calme</p>
+        </div>
+        <div class="about-card">
+            <h3>🚗 Pratique</h3>
+            <p>&#x2022; <strong>Garage privatif fermé</strong> à 50 m du studio<br>
+            &#x2022; <strong>Abri vélos</strong> sécurisé<br>
+            &#x2022; À <strong>800 m</strong> du Centre Courier<br>
+            &#x2022; Lac d'Annecy à <strong>15 min à pied</strong><br>
+            &#x2022; Location à la <strong>semaine</strong></p>
+        </div>
+        <div class="about-card">
+            <h3>☀️ Pour votre confort</h3>
+            <p>&#x2022; <strong>Chauffage central</strong><br>
+            &#x2022; <strong>Chauffe-eau solaire</strong><br>
+            &#x2022; Tous commerces à <strong>300 m</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- Équipements -->
+<section id="equipements" style="background:var(--sand);max-width:100%;">
+    <div style="max-width:1200px;margin:0 auto;">
+        <h2 class="section-title">Équipements</h2>
+        <p class="section-subtitle">Tout le nécessaire pour une semaine parfaite</p>
+        <div class="amenities-grid">
+            <div class="amenity-item"><div class="amenity-icon">🛋️</div><div class="amenity-content"><h4>Canapé-lit BZ double</h4><p>Literie confortable — pour 2 personnes</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🍳</div><div class="amenity-content"><h4>Cuisine équipée</h4><p>Plaque induction, réfrigérateur, micro-ondes, bouilloire, cafetière</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🚿</div><div class="amenity-content"><h4>Salle d'eau</h4><p>Douche, WC, lavabo — eau chaude 24h/24</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">📶</div><div class="amenity-content"><h4>WiFi haut débit</h4><p>Connexion fibre dans tout le studio</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">📺</div><div class="amenity-content"><h4>Télévision</h4><p>Télévision dans le studio</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🌿</div><div class="amenity-content"><h4>Terrasse privative fermée</h4><p>25 m² — coin repas ombragé, salon de jardin</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🚗</div><div class="amenity-content"><h4>Garage privatif fermé</h4><p>À 50 m du studio — inclus dans le tarif</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🚲</div><div class="amenity-content"><h4>Abri vélos</h4><p>Rangement sécurisé pour vos vélos</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🧺</div><div class="amenity-content"><h4>Linge de lit et de maison</h4><p>En option : 30€ par séjour</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🧹</div><div class="amenity-content"><h4>Ménage final</h4><p>50€ — offert si réalisé par vos soins</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🌡️</div><div class="amenity-content"><h4>Eau chaude</h4><p>Chauffe-eau solaire + chaudière 24h/24</p></div></div>
+            <div class="amenity-item"><div class="amenity-icon">🤝</div><div class="amenity-content"><h4>Hôte disponible</h4><p>Nous sommes joignables pendant votre séjour</p></div></div>
+        </div><div class="amenity-content"><h4>Canapé-lit BZ double</h4><p>Literie confortable — pour 2 personnes</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Localisation -->
+<section id="localisation" class="location" style="max-width:100%;">
+    <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
+        <h2 class="section-title">Localisation & Proximités</h2>
+        <p class="section-subtitle">À deux pas de tout ce qu'Annecy a à offrir</p>
+        <div class="location-grid">
+            <div class="location-item">
+                <h4>🏙️ Centre-ville</h4>
+                <ul>
+                    <li>&#x2022; Centre Courier : 800 m</li>
+                    <li>&#x2022; Vieille-Ville : à compléter</li>
+                    <li>&#x2022; Marché d'Annecy : à compléter</li>
+                    <li>&#x2022; Gare d'Annecy : à compléter</li>
+                </ul>
+            </div>
+            <div class="location-item">
+                <h4>🏊 Lac & Loisirs</h4>
+                <ul>
+                    <li>&#x2022; Lac d'Annecy : 15 min à pied</li>
+                    <li>&#x2022; Plages : à compléter</li>
+                    <li>&#x2022; Pistes cyclables : à compléter</li>
+                    <li>&#x2022; Randonnées Semnoz : à compléter</li>
+                </ul>
+            </div>
+            <div class="location-item">
+                <h4>🛒 Commerces</h4>
+                <ul>
+                    <li>&#x2022; Supermarchés : à compléter</li>
+                    <li>&#x2022; Restaurants : à compléter</li>
+                    <li>&#x2022; Boulangerie : à compléter</li>
+                    <li>&#x2022; Pharmacie : à compléter</li>
+                </ul>
+            </div>
+            <div class="location-item">
+                <h4>🚌 Transports</h4>
+                <ul>
+                    <li>&#x2022; Bus / navette : à compléter</li>
+                    <li>&#x2022; Gare SNCF Annecy : à compléter</li>
+                    <li>&#x2022; Aéroport Genève : ~45 min</li>
+                    <li>&#x2022; Aéroport Lyon : ~1h30</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tarifs + Calendrier -->
+<section id="tarifs" class="pricing" style="max-width:100%;">
+    <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
+        <h2 class="section-title">Tarifs</h2>
+        <p class="section-subtitle">Location à la semaine — tout inclus (linge, ménage, garage)</p>
+
+        <div class="pricing-cards">
+            <div class="season-card low">
+                <div class="season-label">Basse saison</div>
+                <div class="season-price">390€</div>
+                <div class="season-price-unit">la semaine</div>
+                <div class="season-period">Octobre → Avril</div>
+            </div>
+            <div class="season-card mid">
+                <div class="season-label">Moyenne saison</div>
+                <div class="season-price">460€</div>
+                <div class="season-price-unit">la semaine</div>
+                <div class="season-period">Mai · Juin · Septembre</div>
+            </div>
+            <div class="season-card high">
+                <div class="season-label">Haute saison</div>
+                <div class="season-price">540€</div>
+                <div class="season-price-unit">la semaine</div>
+                <div class="season-period">Juillet · Août</div>
+            </div>
+            <div class="season-card very-high">
+                <div class="season-label">Très haute saison</div>
+                <div class="season-price">620€</div>
+                <div class="season-price-unit">la semaine</div>
+                <div class="season-period">Semaine du Festival<br>d'animation (juin)</div>
+            </div>
+        </div>
+
+        <div class="pricing-note">
+            ✓ Garage inclus &nbsp;·&nbsp; Linge en option (30€) &nbsp;·&nbsp; Ménage final (50€ ou par vos soins)<br>
+            <strong>Arrivée le samedi.</strong> La semaine du Festival d'animation est au tarif très haute saison.
+        </div>
+
+        <!-- Calendrier -->
+        <div style="margin-top:4rem;">
+            <h3 style="text-align:center;color:var(--deep-blue);font-size:2rem;margin-bottom:0.5rem;">📅 Calendrier des Disponibilités</h3>
+            <p style="text-align:center;color:#666;margin-bottom:0.5rem;">Cliquez sur un <strong>samedi</strong> pour sélectionner votre semaine</p>
+            <p style="text-align:center;color:var(--turquoise);font-weight:700;font-size:1.05rem;margin-bottom:2rem;">⏱️ Location à la semaine uniquement (samedi → samedi)</p>
+
+            <div class="calendar-controls">
+                <div class="year-selector">
+                    <button class="year-btn" onclick="previousYear()">← Année précédente</button>
+                    <span class="current-year" id="currentYear">2026</span>
+                    <button class="year-btn" onclick="nextYear()">Année suivante →</button>
+                </div>
+                <div class="calendar-legend">
+                    <div class="legend-item"><div class="legend-color legend-available"></div><span>Disponible</span></div>
+                    <div class="legend-item"><div class="legend-color legend-booked"></div><span>Réservé</span></div>
+                    <div class="legend-item"><div class="legend-color legend-festival"></div><span>Festival</span></div>
+                    <div class="legend-item"><div class="legend-color legend-selected"></div><span>Sélectionné</span></div>
+                </div>
+            </div>
+
+            <div class="months-grid" id="monthsGrid"></div>
+
+            <div class="selection-info" id="selectionInfo" style="display:none;">
+                <div id="priceBox" style="background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));color:white;padding:1.5rem;border-radius:12px;margin-bottom:1.5rem;text-align:center;">
+                    <div style="font-size:1rem;margin-bottom:0.4rem;opacity:0.9;">💰 Tarif de votre séjour</div>
+                    <div style="font-size:2.8rem;font-weight:700;margin-bottom:0.3rem;" id="totalPriceDisplay">-</div>
+                    <div style="font-size:0.95rem;opacity:0.9;" id="priceBreakdown">-</div>
+                </div>
+                <h3>📅 Votre séjour</h3>
+                <div class="date-display">Arrivée (samedi) : <strong id="checkInDate">-</strong></div>
+                <div class="date-display">Départ (samedi) : <strong id="checkOutDate">-</strong></div>
+                <div class="date-display">Durée : <strong>1 semaine (7 nuits)</strong></div>
+                <button class="clear-btn" onclick="clearSelection()">Effacer la sélection</button>
+                <a href="#contact" class="cta-button" style="margin-top:1rem;display:inline-block;">✉️ Demande de réservation</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2 class="section-title">Réserver le Studio Semnoz</h2>
+    <p class="section-subtitle">Envoyez-nous votre demande — réponse sous 24h</p>
+    <form class="contact-form" action="#" method="POST">
+        <div class="form-group"><label for="nom">Nom complet *</label><input type="text" id="nom" name="nom" required></div>
+        <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
+        <div class="form-group"><label for="telephone">Téléphone</label><input type="tel" id="telephone" name="telephone"></div>
+        <div class="form-group">
+            <label for="dates">Semaine souhaitée ✨</label>
+            <input type="text" id="dates" name="dates" placeholder="Sélectionnez votre semaine dans le calendrier ⬆️" style="background:#e3f2fd;font-weight:600;color:var(--deep-blue);">
+        </div>
+        <div class="form-group">
+            <label for="totalPrice">💰 Tarif de la semaine</label>
+            <input type="text" id="totalPrice" name="totalPrice" readonly placeholder="Le tarif s'affiche après sélection des dates" style="background:linear-gradient(135deg,#fff8e1,#fff);font-weight:700;font-size:1.1rem;color:var(--turquoise);border:2px solid var(--turquoise);">
+        </div>
+        <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Votre projet de séjour, questions, besoins particuliers..."></textarea></div>
+        <button type="submit" class="submit-button">Envoyer la demande de réservation</button>
+        <p style="margin-top:1.5rem;text-align:center;color:#666;font-size:0.9rem;">
+            📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74021b000611341119151d185a171b19">[email&#160;protected]</a> &nbsp;·&nbsp; 📱 +33 X XX XX XX XX
+        </p>
+    </form>
+</section>
+
+<!-- Navigation entre studios -->
+<div class="studio-nav">
+    <p style="color:var(--deep-blue);font-weight:600;margin-bottom:0.5rem;">Découvrir nos autres studios</p>
+    <div class="studio-nav-links">
+        <a href="studio-semnoz.html" class="studio-nav-link active">Studio Semnoz</a>
+        <a href="studio-lanfonnet.html" class="studio-nav-link">Studio Lanfonnet</a>
+        <a href="studio-parmelan.html" class="studio-nav-link">Studio Parmelan</a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Les Terrasses d'Annecy — Tous droits réservés</p>
+    <p>Annecy, Haute-Savoie</p>
+    <p><a href="index-FR.html">← Retour à l'accueil</a></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Merci pour votre demande ! Nous vous répondons sous 24 heures.');
+        this.reset();
+    });
+
+    // ============================================
+    // SLIDER
+    // ============================================
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const dotsContainer = document.getElementById('sliderDots');
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    }
+    function updateSlider() {
+        document.getElementById('sliderContainer').style.transform = `translateX(-${currentSlide * 100}%)`;
+        document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+    }
+    function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); }
+    function previousSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); }
+    function goToSlide(i) { currentSlide = i; updateSlider(); }
+    setInterval(nextSlide, 5000);
+
+    // ============================================
+    // CALENDRIER — SEMAINE SAMEDI→SAMEDI
+    // ============================================
+    let currentCalendarYear = 2026;
+    let selectedCheckIn = null;
+
+    // Samedis réservés — à mettre à jour avec vos réservations (date du samedi d'arrivée)
+    const bookedSaturdays = [];
+
+    // Semaine du Festival d'animation — à mettre à jour chaque année
+    // 2026 : Festival du 8 au 13 juin → arrivée samedi 6 juin
+    const festivalSaturdays = ['2026-06-06'];
+
+    const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    const dayNames = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+
+    const PRICING = {
+        LOW:       { price: 390,  label: 'Basse saison (oct–avr)' },
+        MID:       { price: 460,  label: 'Moyenne saison (mai, juin, sept)' },
+        HIGH:      { price: 540,  label: 'Haute saison (juil–août)' },
+        VERY_HIGH: { price: 620,  label: 'Très haute saison — Festival d\'animation' }
+    };
+
+    function getSeason(satStr) {
+        if (festivalSaturdays.includes(satStr)) return PRICING.VERY_HIGH;
+        const m = parseInt(satStr.split('-')[1]);
+        if (m === 7 || m === 8) return PRICING.HIGH;
+        if (m === 5 || m === 6 || m === 9) return PRICING.MID;
+        return PRICING.LOW;
+    }
+
+    function formatDate(date) {
+        return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    }
+
+    function formatDateFr(dateStr) {
+        const d = new Date(dateStr + 'T12:00:00');
+        return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function addDays(dateStr, n) {
+        const d = new Date(dateStr + 'T12:00:00');
+        d.setDate(d.getDate() + n);
+        return formatDate(d);
+    }
+
+    function initCalendar() {
+        document.getElementById('currentYear').textContent = currentCalendarYear;
+        renderCalendar();
+    }
+
+    function renderCalendar() {
+        const grid = document.getElementById('monthsGrid');
+        grid.innerHTML = '';
+        for (let m = 0; m < 12; m++) grid.appendChild(createMonthCalendar(currentCalendarYear, m));
+    }
+
+    function createMonthCalendar(year, month) {
+        const div = document.createElement('div');
+        div.className = 'month-calendar';
+        const header = document.createElement('div');
+        header.className = 'month-header';
+        header.innerHTML = `<div class="month-name">${monthNames[month]} ${year}</div>`;
+        div.appendChild(header);
+
+        const wk = document.createElement('div');
+        wk.className = 'weekdays';
+        dayNames.forEach(d => { const e = document.createElement('div'); e.className = 'weekday'; e.textContent = d; wk.appendChild(e); });
+        div.appendChild(wk);
+
+        const daysGrid = document.createElement('div');
+        daysGrid.className = 'days';
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const today = new Date(); today.setHours(0,0,0,0);
+
+        for (let i = 0; i < firstDay; i++) {
+            const e = document.createElement('div'); e.className = 'day empty'; daysGrid.appendChild(e);
+        }
+
+        const checkOut = selectedCheckIn ? addDays(selectedCheckIn, 7) : null;
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const date = new Date(year, month, day);
+            const dateStr = formatDate(date);
+            const isSat = date.getDay() === 6;
+
+            const el = document.createElement('div');
+            el.className = 'day';
+            el.textContent = day;
+
+            if (date < today) {
+                el.classList.add('past');
+            } else if (isSat && bookedSaturdays.includes(dateStr)) {
+                el.classList.add('booked');
+                el.title = 'Semaine déjà réservée';
+            } else if (isSat && festivalSaturdays.includes(dateStr)) {
+                el.classList.add('festival');
+                el.title = 'Semaine du Festival — 620€';
+                el.onclick = () => selectWeek(dateStr);
+            } else if (isSat) {
+                el.classList.add('saturday');
+                el.onclick = () => selectWeek(dateStr);
+            } else {
+                el.classList.add('other');
+            }
+
+            // Surlignage semaine sélectionnée
+            if (selectedCheckIn) {
+                if (dateStr === selectedCheckIn || dateStr === checkOut) {
+                    el.classList.add('selected');
+                } else if (dateStr > selectedCheckIn && dateStr < checkOut) {
+                    el.classList.add('in-range');
+                }
+            }
+
+            daysGrid.appendChild(el);
+        }
+
+        div.appendChild(daysGrid);
+        return div;
+    }
+
+    function selectWeek(satStr) {
+        selectedCheckIn = satStr;
+        renderCalendar();
+        updateSelectionInfo();
+    }
+
+    function updateSelectionInfo() {
+        const info = document.getElementById('selectionInfo');
+        if (!selectedCheckIn) { info.style.display = 'none'; return; }
+        const checkOut = addDays(selectedCheckIn, 7);
+        const season = getSeason(selectedCheckIn);
+        document.getElementById('checkInDate').textContent = formatDateFr(selectedCheckIn);
+        document.getElementById('checkOutDate').textContent = formatDateFr(checkOut);
+        document.getElementById('totalPriceDisplay').textContent = `${season.price}€`;
+        document.getElementById('priceBreakdown').textContent = season.label;
+        info.style.display = 'block';
+        const f = document.getElementById('dates');
+        const p = document.getElementById('totalPrice');
+        if (f) f.value = `${formatDateFr(selectedCheckIn)} → ${formatDateFr(checkOut)}`;
+        if (p) p.value = `${season.price}€ — 1 semaine`;
+    }
+
+    function clearSelection() {
+        selectedCheckIn = null;
+        renderCalendar();
+        document.getElementById('selectionInfo').style.display = 'none';
+        const f = document.getElementById('dates');
+        const p = document.getElementById('totalPrice');
+        if (f) f.value = '';
+        if (p) p.value = '';
+    }
+
+    function previousYear() { if (currentCalendarYear > 2026) { currentCalendarYear--; initCalendar(); } }
+    function nextYear() { if (currentCalendarYear < 2028) { currentCalendarYear++; initCalendar(); } }
+
+    // Initialisation robuste - compatible Android
+    function safeInitCalendar() {
+        var grid = document.getElementById('monthsGrid');
+        if (grid && grid.children.length === 0) {
+            initCalendar();
+        }
+    }
+        document.addEventListener('DOMContentLoaded', safeInitCalendar);
+    window.addEventListener('load', safeInitCalendar);
+    setTimeout(safeInitCalendar, 500);
+    setTimeout(safeInitCalendar, 1500);
+</script>
+</body>
+</html>
