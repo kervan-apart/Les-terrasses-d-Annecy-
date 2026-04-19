@@ -128,6 +128,22 @@
             to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
+        /* Hero logo index */
+        .hero-logo {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo img {
+            height: 140px;
+            width: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
         @keyframes waves {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -138,6 +154,7 @@
             z-index: 2;
             max-width: 900px;
             padding: 2rem;
+            margin-top: 100px;
             animation: fadeInUp 1s ease-out;
         }
 
@@ -470,7 +487,6 @@
             text-decoration: none;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-logo {
                 position: relative;
@@ -478,19 +494,17 @@
                 left: auto;
                 transform: none;
                 text-align: center;
-                margin-bottom: 1.5rem;
-                animation: fadeInDown 1s ease-out;
+                margin-top: 3.5rem;
+                margin-bottom: 1rem;
             }
-
-            .hero-logo img {
-                height: 180px;
-            }
+            .hero-logo img { height: 120px; }
 
             .hero {
                 height: auto;
                 min-height: 100vh;
-                padding: 6rem 1rem 4rem;
+                padding: 5rem 1rem 3rem;
                 flex-direction: column;
+                justify-content: center;
             }
 
             .hero h1 {
@@ -551,11 +565,11 @@
 
 <!-- Hero -->
 <section id="accueil" class="hero" style="max-width: 100%; padding: 0;">
-        <!-- Logo -->
-    <div style="position:absolute;top:50%;transform:translate(-50%,-155%);left:50%;z-index:10;animation:fadeInUp 1s ease-out;">
-        <img src="https://kervan-apart.github.io/kervan-apart/images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy" style="height:160px;width:auto;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+    <!-- Logo -->
+    <div class="hero-logo">
+        <img src="https://kervan-apart.github.io/kervan-apart/images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
     </div>
-    <div class="hero-content" style="margin-top:120px;">
+    <div class="hero-content">
         <h1>Les Terrasses d'Annecy</h1>
         <p class="hero-subtitle">· 3 studios entièrement équipés à 2 pas du centre-ville ·<br>· Lac d'Annecy à 15 minutes à pied ·</p>
         <div class="hero-features">
@@ -579,22 +593,22 @@
         <div class="studio-card">
             <div class="studio-photo">
                 <!-- Remplacer src par votre photo -->
-                <img src="images/semnoz-principale.jpg" alt="Studio Semnoz Annecy" onerror="this.style.display='none'">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Terrasse-1.JPG" alt="Studio Semnoz Annecy" onerror="this.style.display='none'">
                 <div class="studio-photo-placeholder">🏔️</div>
-                <div class="studio-badge">À partir de XX€/nuit</div>
+                <div class="studio-badge">Location à la semaine</div>
             </div>
             <div class="studio-body">
                 <h3 class="studio-name">Studio Semnoz</h3>
-                <p class="studio-tagline">À compléter — vue, quartier, ambiance...</p>
+                <p class="studio-tagline">22 m² · Terrasse privative 25 m² · Exposition Ouest</p>
                 <ul class="studio-features">
-                    <li>&#x2022; X personnes maximum</li>
+                    <li>&#x2022; 2 personnes</li>
                     <li>&#x2022; Canapé-lit BZ confortable</li>
                     <li>&#x2022; Terrasse privative</li>
                     <li>&#x2022; Garage inclus</li>
                     <li>&#x2022; Cuisine équipée · WiFi haut débit</li>
                     <li>&#x2022; À compléter</li>
                 </ul>
-                <div class="studio-price">À partir de XX€ <span>/ nuit</span></div>
+                <div class="studio-price">À partir de 390€ <span>/ semaine</span></div>
                 <a href="studio-semnoz.html" class="studio-btn">Découvrir ce studio →</a>
             </div>
         </div>
@@ -602,22 +616,22 @@
         <!-- Studio Lanfonnet -->
         <div class="studio-card">
             <div class="studio-photo">
-                <img src="images/lanfonnet-principale.jpg" alt="Studio Lanfonnet Annecy" onerror="this.style.display='none'">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Terrasse-Est.jpg" alt="Studio Lanfonnet Annecy" onerror="this.style.display='none'">
                 <div class="studio-photo-placeholder">🌊</div>
-                <div class="studio-badge">À partir de XX€/nuit</div>
+                <div class="studio-badge">Location à la semaine</div>
             </div>
             <div class="studio-body">
                 <h3 class="studio-name">Studio Lanfonnet</h3>
-                <p class="studio-tagline">À compléter — vue, quartier, ambiance...</p>
+                <p class="studio-tagline">21 m² · Terrasse privative 15 m² · Exposition Est</p>
                 <ul class="studio-features">
-                    <li>&#x2022; X personnes maximum</li>
+                    <li>&#x2022; 2/3 personnes</li>
                     <li>&#x2022; Canapé-lit BZ confortable</li>
                     <li>&#x2022; Terrasse privative</li>
                     <li>&#x2022; Garage inclus</li>
                     <li>&#x2022; Cuisine équipée · WiFi haut débit</li>
                     <li>&#x2022; À compléter</li>
                 </ul>
-                <div class="studio-price">À partir de XX€ <span>/ nuit</span></div>
+                <div class="studio-price">À partir de 390€ <span>/ semaine</span></div>
                 <a href="studio-lanfonnet.html" class="studio-btn">Découvrir ce studio →</a>
             </div>
         </div>
@@ -625,22 +639,22 @@
         <!-- Studio Parmelan -->
         <div class="studio-card">
             <div class="studio-photo">
-                <img src="images/parmelan-principale.jpg" alt="Studio Parmelan Annecy" onerror="this.style.display='none'">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/parmelan/Terrasse-1.jpg" alt="Studio Parmelan Annecy" onerror="this.style.display='none'">
                 <div class="studio-photo-placeholder">⛰️</div>
-                <div class="studio-badge">À partir de XX€/nuit</div>
+                <div class="studio-badge">Location à la semaine</div>
             </div>
             <div class="studio-body">
                 <h3 class="studio-name">Studio Parmelan</h3>
-                <p class="studio-tagline">À compléter — vue, quartier, ambiance...</p>
+                <p class="studio-tagline">20 m² · Terrasse privative 15 m² · Exposition Est</p>
                 <ul class="studio-features">
-                    <li>&#x2022; X personnes maximum</li>
+                    <li>&#x2022; 2 personnes</li>
                     <li>&#x2022; Canapé-lit BZ confortable</li>
                     <li>&#x2022; Terrasse privative</li>
                     <li>&#x2022; Garage inclus</li>
                     <li>&#x2022; Cuisine équipée · WiFi haut débit</li>
                     <li>&#x2022; À compléter</li>
                 </ul>
-                <div class="studio-price">À partir de XX€ <span>/ nuit</span></div>
+                <div class="studio-price">À partir de 380€ <span>/ semaine</span></div>
                 <a href="studio-parmelan.html" class="studio-btn">Découvrir ce studio →</a>
             </div>
         </div>
@@ -658,42 +672,191 @@
             <div class="annecy-card">
                 <div class="icon">🏔️</div>
                 <h3>Montagnes et randonnées</h3>
-                <p>Massifs du Semnoz, Parmelan, Lanfonnet et Aravis — des sentiers pour tous les niveaux à deux pas de la ville</p>
+                <p>Massifs du Semnoz, Bornes et Aravis — des sentiers pour tous les niveaux à deux pas de la ville. Belvédères routiers renommés : Semnoz 17 km, Col de la Forclaz 12 km.</p>
             </div>
             <div class="annecy-card">
                 <div class="icon">🏊</div>
                 <h3>Lac d'Annecy</h3>
-                <p>L'un des lacs les plus purs d'Europe — baignade, paddle, voile, kayak ou simplement se promener sur ses rives</p>
+                <p>L'un des lacs les plus purs d'Europe — baignade, paddle, voile, kayak ou simplement se promener sur ses rives à pied ou à vélo (piste cyclable de 40 km).</p>
             </div>
             <div class="annecy-card">
                 <div class="icon">🏛️</div>
                 <h3>Vieille-Ville</h3>
-                <p>Canaux, palais de l'Isle, château et marchés animés — un centre historique classé parmi les plus beaux de France</p>
+                <p>Canaux, palais de l'Isle, château et marchés animés — un centre historique classé parmi les plus beaux de France, facilement joignable par la Promenade ombragée du Thoui (à l'écart des voitures).</p>
             </div>
             <div class="annecy-card">
                 <div class="icon">🚵</div>
                 <h3>Sports & loisirs</h3>
-                <p>Vélo, ski en hiver, parapente, via ferrata — Annecy est une capitale européenne du sport outdoor</p>
+                <p>Vélo, ski en hiver, parapente, via ferrata — Annecy est une capitale européenne du sport outdoor.</p>
             </div>
+        </div>
+
+        <!-- Slider photos Annecy -->
+        <div class="annecy-slider" style="margin-top:3rem;position:relative;overflow:hidden;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.15);">
+            <div class="annecy-slider-track" id="annecySliderTrack" style="display:flex;transition:transform 0.6s ease;height:480px;">
+
+                                <!-- Photo 1 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-1.jpeg" alt="Annecy, la Perle des Alpes à votre porte" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Annecy, la Perle des Alpes à votre porte</h3>
+                        
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-2.jpeg" alt="Marché pittoresque de la Vieille-Ville" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Marché pittoresque de la Vieille-Ville</h3>
+                        <p style="opacity:0.9;">3 fois par semaine</p>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-3.jpeg" alt="Palais de l'Isle" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Palais de l'Isle</h3>
+                        <p style="opacity:0.9;">Au cœur de la Vieille-Ville et du Thiou</p>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-4.jpeg" alt="Promenades agréables au bord du lac" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Promenades agréables au bord du lac</h3>
+                        
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-5.jpeg" alt="Une ville dynamique" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Une ville dynamique</h3>
+                        <p style="opacity:0.9;">Animée toute l'année</p>
+                    </div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-6.jpeg" alt="Fête du lac" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Fête du lac</h3>
+                        <p style="opacity:0.9;">Chaque 1er samedi d'août</p>
+                    </div>
+                </div>
+
+                <!-- Photo 7 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-7.jpeg" alt="Belvédère du Semnoz" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Belvédère du Semnoz</h3>
+                        <p style="opacity:0.9;">Magnifique en toutes saisons</p>
+                    </div>
+                </div>
+
+                <!-- Photo 8 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-8.jpeg" alt="Promenade du Thiou" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Promenade du Thiou</h3>
+                        <p style="opacity:0.9;">Pour rallier directement la Vieille-Ville</p>
+                    </div>
+                </div>
+
+                <!-- Photo 9 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-9.jpeg" alt="Baignade estivale" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Baignade estivale</h3>
+                        <p style="opacity:0.9;">Dans les eaux pures du lac</p>
+                    </div>
+                </div>
+
+                <!-- Photo 10 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-10.jpeg" alt="Pistes cyclables — 40 km" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Pistes cyclables — 40 km</h3>
+                        <p style="opacity:0.9;">Faciles et enchanteurs entre lac et montagnes</p>
+                    </div>
+                </div>
+
+                <!-- Photo 11 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-11.jpeg" alt="Ballades en bateau" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Ballades en bateau</h3>
+                        <p style="opacity:0.9;">Un incontournable pour découvrir le lac sous un autre angle</p>
+                    </div>
+                </div>
+
+                <!-- Photo 12 -->
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-12.jpeg" alt="Nombreux sites touristiques à proximité" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Nombreux sites touristiques à proximité</h3>
+                    </div>
+                </div>
+
+<!-- Points de navigation -->
+            <div id="annecyDots" style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:0.5rem;z-index:10;"></div>
         </div>
     </div>
 </section>
+
+<script>
+    // Slider Annecy
+    let annecySlide = 0;
+    const annecyTotal = 12;
+    const annecyTrack = document.getElementById('annecySliderTrack');
+    const annecyDotsEl = document.getElementById('annecyDots');
+
+    for (let i = 0; i < annecyTotal; i++) {
+        const dot = document.createElement('div');
+        dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${i===0?'white':'rgba(255,255,255,0.5)'};cursor:pointer;transition:all 0.3s;`;
+        dot.onclick = () => annecyGo(i);
+        annecyDotsEl.appendChild(dot);
+    }
+
+    function annecyUpdateDots() {
+        annecyDotsEl.querySelectorAll('div').forEach((d, i) => {
+            d.style.background = i === annecySlide ? 'white' : 'rgba(255,255,255,0.5)';
+        });
+    }
+
+    function annecyGo(n) { annecySlide = n; annecyTrack.style.transform = `translateX(-${annecySlide*100}%)`; annecyUpdateDots(); }
+    function annecyNext() { annecyGo((annecySlide + 1) % annecyTotal); }
+    function annecyPrev() { annecyGo((annecySlide - 1 + annecyTotal) % annecyTotal); }
+    setInterval(annecyNext, 6000);
+</script>
+
+
+<!-- Carte de localisation -->
+<div style="width:100%;overflow:hidden;line-height:0;">
+    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/carte-localisation-2.jpg"
+         alt="Carte de localisation — Les Terrasses d'Annecy"
+         style="width:100%;height:auto;display:block;">
+</div>
 
 <!-- Contact -->
 <div id="contact" class="contact-simple">
     <h2>Une question ? Contactez-nous</h2>
     <p>Nous répondons généralement sous 24 heures</p>
-    <a href="#logements" class="cta-button" style="margin-bottom: 2rem; display: inline-block;">Choisir un studio</a>
+    <a href="#logements" class="cta-button" style="margin-bottom:2rem;display:inline-block;">Choisir un studio</a>
     <div class="contact-info">
-        <a href="/cdn-cgi/l/email-protection#2a5c455e584f6a4f474b434604494547">📧 <span class="__cf_email__" data-cfemail="86f0e9f2f4e3c6e3ebe7efeaa8e5e9eb">[email&#160;protected]</span></a>
-        <a href="https://wa.me/33XXXXXXXXX">📱 WhatsApp : +33 6 60 70 60 11</a>
+        <a href="mailto:pimo29@gmail.com">📧 pimo29@gmail.com</a>
+        <a href="https://wa.me/33660706011">📱 WhatsApp : +33 6 60 70 60 11</a>
     </div>
 </div>
 
 <!-- Footer -->
 <footer>
-    <p>&copy; 2025 Les Terrasses d'Annecy — Tous droits réservés</p>
-    <p>Vieille-Ville, Annecy, Haute-Savoie</p>
+    <p>&copy; 2026 Les Terrasses d'Annecy — Tous droits réservés</p>
+    <p>Annecy, Haute-Savoie</p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
