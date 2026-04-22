@@ -104,11 +104,11 @@
         .dot.active { background: white; transform: scale(1.3); }
 
         /* About */
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2.5rem; margin-top: 3rem; }
-        .about-card { background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s,box-shadow 0.3s; }
+        .about-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 3rem; }
+        .about-card { background: white; padding: 1.2rem; border-radius: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s,box-shadow 0.3s; }
         .about-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.11); }
-        .about-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--mediterranean-blue); }
-        .about-card p { color: #555; line-height: 1.9; }
+        .about-card h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--mediterranean-blue); }
+        .about-card p { color: #555; line-height: 1.7; font-size: 0.88rem; }
 
         /* Équipements */
         .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
@@ -200,26 +200,14 @@
         footer p { margin: 0.5rem 0; opacity: 0.8; }
         footer a { color: var(--turquoise); text-decoration: none; }
 
-        @media (max-width: 768px) {
-            .hero { height: auto; min-height: 80vh; padding: 6rem 1rem 3rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .hero-features { flex-direction: column; gap: 0.6rem; }
-            .photo-slider { height: 320px; }
-            .section-title { font-size: 1.8rem; }
-            section { padding: 3rem 1rem; }
-            .months-grid { grid-template-columns: 1fr; }
-            .calendar-controls { flex-direction: column; align-items: stretch; }
-            .pricing-cards { grid-template-columns: repeat(2,1fr); }
-            .contact-form { padding: 1.5rem; }
-        }
+        
 
         /* Hero logo */
         .hero-logo {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: 2rem;
+            left: 5.5rem;
             z-index: 10;
             animation: fadeInLeft 1s ease-out;
         }
@@ -238,36 +226,151 @@
             from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
             to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        
+
+        /* Nav mobile optimisée */
+        
+
+        /* Bouton Réserver flottant */
+        .btn-reserver-fixe {
+            display: none;
+        }
+        
+
+        /* Drapeaux langue */
+        .lang-flags {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 1001;
+            display: flex;
+            gap: 6px;
+        }
+        .lang-flags a {
+            font-size: 1.6rem;
+            text-decoration: none;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: transform 0.2s;
+        }
+        .lang-flags a:hover {
+            transform: scale(1.15);
+        }
+        .lang-flags a.active {
+            outline: 2px solid var(--turquoise);
+            border-radius: 4px;
+        }
+
+        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
+
+            /* Nav : une ligne, couleur uniforme */
+            nav ul { gap: 0.8rem; }
+            nav a { font-size: 0.82rem; color: var(--deep-blue); }
+            nav a.back-link { color: var(--deep-blue); }
+
+            /* Hero : colonne centrée */
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 5rem 1rem 3rem;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* Logo : centré au-dessus du titre */
             .hero-logo {
                 position: relative;
                 top: auto; left: auto;
                 transform: none;
                 text-align: center;
-                margin-bottom: 1.5rem;
-                animation: fadeInDown 1s ease-out;
+                margin-bottom: 1rem;
+                animation: fadeInUp 1s ease-out;
             }
-            .hero-logo img { height: 140px; }
+            .hero-logo img { height: 120px; }
+
+            /* Titre sur une ligne */
+            .hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                white-space: nowrap;
+            }
+
+            .hero-subtitle { font-size: 0.78rem; line-height: 1.3; white-space: nowrap; }
+
+            /* Features alignées à gauche, décalées à droite */
+            .hero-features { flex-direction: column; gap: 0.4rem; align-items: flex-start; padding-left: 3rem; }
+            .hero-feature { font-size: 0.88rem; }
+
+            .section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 1rem; }
+            section { padding: 3rem 1rem; }
+            .months-grid { grid-template-columns: 1fr; }
+            .calendar-controls { flex-direction: column; align-items: stretch; }
+            .pricing-cards { grid-template-columns: repeat(2,1fr); }
+            .contact-form { padding: 1.5rem; }
+            /* About cards mobile */
+            .about-grid { grid-template-columns: 1fr; }
+            .about-card { padding: 1.2rem; }
+            .about-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+            .about-card p { font-size: 0.82rem; line-height: 1.6; }
+        }
+
+        @media (min-width: 769px) {
+            .slide img {
+                object-fit: contain;
+                background: #f8f8f8;
+            }
+        }
+
+        /* Boutons hero */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin-top: 1.5rem;
+        }
+        .hero-buttons a {
+            padding: 1.1rem 2.5rem;
+            font-size: 1rem;
+            white-space: nowrap;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .hero-buttons .btn-tarifs {
+            background: var(--sunset);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .hero-buttons .btn-tarifs:hover {
+            background: #ff5722;
+            transform: translateY(-3px);
+        }
+        .hero-buttons .btn-reserver {
+            background: var(--sunset);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .hero-buttons .btn-reserver:hover {
+            background: #ff5722;
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
 
 <!-- Sélecteur de langue -->
-<div style="position:fixed;top:20px;right:20px;z-index:1001;background:white;padding:8px 10px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-    <select onchange="window.location.href=this.value" style="padding:6px 10px;border:2px solid #1b9aaa;border-radius:6px;font-size:14px;cursor:pointer;background:white;">
-        <option value="studio-semnoz.html" selected>🇫🇷 Français</option>
-        <option value="studio-semnoz-EN.html">🇬🇧 English</option>
-    </select>
-</div>
+
 
 <!-- Navigation -->
 <nav>
     <ul>
-                <li><a href="index-FR.html" class="back-link">← Accueil</a></li>
+                <li><a href="index-FR.html" style="color:var(--deep-blue);font-weight:600;">← Accueil</a></li>
         <li><a href="#studio">Le Studio</a></li>
         <li><a href="#localisation">Localisation</a></li>
-        <li><a href="#tarifs">Tarifs &amp; Disponibilités</a></li>
+        <li class="nav-tarifs"><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Réserver</a></li>
     </ul>
 </nav>
@@ -276,7 +379,7 @@
 <section id="studio" class="hero" style="max-width:100%;padding:0;">
     <!-- Logo -->
     <div class="hero-logo">
-        <img src="images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
+        <img src="https://kervan-apart.github.io/kervan-apart/images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
     </div>
     <div class="hero-content">
         <div class="hero-badge">Les Terrasses d'Annecy</div>
@@ -288,7 +391,10 @@
             <div class="hero-feature">Garage privatif</div>
             <div class="hero-feature">Exposition Ouest</div>
         </div>
-        <a href="#tarifs" class="cta-button">Voir les tarifs</a>
+        <div class="hero-buttons">
+            <a href="#tarifs" class="btn-tarifs">Voir les tarifs</a>
+            <a href="#contact" class="btn-reserver">✉️ Réserver</a>
+        </div>
     </div>
 </section>
 
@@ -296,62 +402,48 @@
 <div style="background:white;margin-top:-2rem;">
     <div class="photo-slider">
         <div class="slider-container" id="sliderContainer">
-            
-<!-- Slide 1 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Terrasse-3.jpg" alt="Terrasse privative fermée" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Terrasse privative fermée</div>
-    <div class="slider-caption"><h3>Terrasse privative fermée</h3><p>25 m² · Coin repas ombragé · Salon de jardin · Exposition Ouest</p></div>
-</div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Terrasse-3.jpg" alt="Terrasse privative fermée" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Terrasse privative fermée</div>
+                <div class="slider-caption"><h3>Terrasse privative fermée</h3><p>25 m² · Coin repas ombragé · Salon de jardin · Exposition Ouest</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Terrasse-2.jpg" alt="Coin repas ombragé en été" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Coin repas ombragé en été</div>
+                <div class="slider-caption"><h3>Coin repas ombragé en été</h3></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-1.jpg" alt="Séjour spacieux" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Séjour spacieux</div>
+                <div class="slider-caption"><h3>Séjour spacieux</h3><p>Canapé-lit BZ confortable pour 2 personnes</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-2.jpg" alt="Coin-nuit" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Cuisine équipée</div>
+                <div class="slider-caption"><h3>Cuisine équipée</h3><p>Plaque induction · Réfrigérateur · Micro-ondes</p></div>
+            </div>
+                        <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-coin-cuisine.jpg" alt="Coin repas" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Coin nuit</div>
+                <div class="slider-caption"><h3>Coin nuit</h3></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-salle-d-eau-2.jpg" alt="Salle d'eau" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Salle d'eau</div>
+                <div class="slider-caption"><h3>Salle d'eau</h3><p>Grande douche 120 cm · WC · Lavabo</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-salle-d-eau-1.jpg" alt="Salle d'eau / WC" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Salle d'eau / WC</div>
+                <div class="slider-caption"><h3>Salle d'eau / WC</h3></div>
+            </div>
 
-<!-- Slide 2 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Terrasse-2.jpg" alt="Coin-repas ombragé en été" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Coin-repas ombragé en été</div>
-    <div class="slider-caption"><h3>Coin-repas ombragé en été</h3><p>Canapé-lit BZ confortable pour 2 personnes</p></div>
-</div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-vue-exterieure.jpg" alt="Vue extérieure" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Vue extérieure</div>
+                <div class="slider-caption"><h3>Vue extérieure</h3><p>Rez-de-jardin · Accès direct terrasse</p></div>
+            </div>
 
-<!-- Slide 3 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Studio-SEMNOZ-1.jpg" alt="Séjour spacieux" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Séjour spacieux</div>
-    <div class="slider-caption"><h3>Séjour spacieux</h3><p>Plaque induction · Réfrigérateur · Micro-ondes</p></div>
-</div>
-
-<!-- Slide 4 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Studio-SEMNOZ-coin-cuisine.jpg" alt="Kitchenette équipée" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Kitchenette équipée</div>
-    <div class="slider-caption"><h3>Kitchenette équipée</h3><p>Rez-de-jardin · Accès direct terrasse</p></div>
-</div>
-
-<!-- Slide 5 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Studio-SEMNOZ-2.jpg" alt="Coin-nuit" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Coin-nuit</div>
-    <div class="slider-caption"><h3>Coin-nuit</h3></div>
-</div>
-
-<!-- Slide 6 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Studio-SEMNOZ-2.jpg" alt="Salle d'eau / toilettes" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Salle d'eau / toilettes</div>
-    <div class="slider-caption"><h3>Salle d'eau / toilettes</h3></div>
-</div>
-
-<!-- Slide 7 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-Studio-SEMNOZ-1.jpg" alt="Grande douche en 120 cm" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Grande douche en 120 cm</div>
-    <div class="slider-caption"><h3>Grande douche en 120 cm</h3></div>
-</div>
-
-<!-- Slide 8 -->
-<div class="slide">
-    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/    semnoz  /Studio-SEMNOZ-vue-exterieure.jpg" alt="Vue expérieure" onerror="this.style.display='none'">
-    <div class="slide-placeholder">📷 Vue expérieure</div>
-    <div class="slider-caption"><h3>Vue expérieure</h3></div>
-</div>
         </div>
         <div class="slider-nav">
             <button class="slider-btn" onclick="previousSlide()">‹</button>
@@ -395,7 +487,6 @@
             <p>&#x2022; <strong>Chauffage central</strong><br>
             &#x2022; <strong>Chauffe-eau solaire</strong><br>
             &#x2022; Tous commerces à <strong>300 m</strong></p>
-        </div>
     </div>
 </section>
 
@@ -417,7 +508,6 @@
             <div class="amenity-item"><div class="amenity-icon">🧹</div><div class="amenity-content"><h4>Ménage final</h4><p>50€ — offert si réalisé par vos soins</p></div></div>
             <div class="amenity-item"><div class="amenity-icon">🌡️</div><div class="amenity-content"><h4>Eau chaude</h4><p>Chauffe-eau solaire + chaudière 24h/24</p></div></div>
             <div class="amenity-item"><div class="amenity-icon">🤝</div><div class="amenity-content"><h4>Hôte disponible</h4><p>Nous sommes joignables pendant votre séjour</p></div></div>
-        </div><div class="amenity-content"><h4>Canapé-lit BZ double</h4><p>Literie confortable — pour 2 personnes</p></div></div>
         </div>
     </div>
 </section>
@@ -434,23 +524,23 @@
                     <li>&#x2022; Centre Courier : 800 m</li>
                     <li>&#x2022; Vieille-Ville : 1 200 m</li>
                     <li>&#x2022; Marché d'Annecy : 1 200 m</li>
-                    <li>&#x2022; Gare d'Annecy : 800 m</li>
+                    <li>&#x2022; Office de tourisme : 1 200 m</li>
                 </ul>
             </div>
             <div class="location-item">
-                <h4>🏊 Lac & Loisirs</h4>
+                <h4>🏊 Lac & Montagnes</h4>
                 <ul>
                     <li>&#x2022; Lac d'Annecy : 15 min à pied</li>
-                    <li>&#x2022; Plages : 2 km</li>
-                    <li>&#x2022; Pistes cyclables : 2 km/li>
-                    <li>&#x2022; Randonnées Semnoz : 2 km</li>
+                    <li>&#x2022; Plage d'Albigny : 2 km</li>
+                    <li>&#x2022; Pistes cyclables : 2 km</li>
+                    <li>&#x2022; Semnoz ski : 17 km</li>
                 </ul>
             </div>
             <div class="location-item">
                 <h4>🛒 Commerces</h4>
                 <ul>
                     <li>&#x2022; Supermarchés : 300 m</li>
-                    <li>&#x2022; Restaurants : 300 m </li>
+                    <li>&#x2022; Restaurants : 300 m</li>
                     <li>&#x2022; Boulangerie : 300 m</li>
                     <li>&#x2022; Pharmacie : 300 m</li>
                 </ul>
@@ -458,8 +548,8 @@
             <div class="location-item">
                 <h4>🚌 Transports</h4>
                 <ul>
-                    <li>&#x2022; Bus / navette : à compléter</li>
-                    <li>&#x2022; Gare SNCF Annecy : à compléter</li>
+                    <li>&#x2022; Bus urbains : lignes 7 et 8</li>
+                    <li>&#x2022; Gare SNCF Annecy : 800 m</li>
                     <li>&#x2022; Aéroport Genève : ~45 min</li>
                     <li>&#x2022; Aéroport Lyon : ~1h30</li>
                 </ul>
@@ -469,6 +559,13 @@
 </section>
 
 <!-- Tarifs + Calendrier -->
+
+<!-- Carte de localisation -->
+<div style="width:100%;padding:2rem 2rem 0;background:var(--sand);text-align:center;">
+    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/carte-localisation-2.png"
+         alt="Carte de localisation — Les Terrasses d'Annecy"
+         style="max-width:650px;width:100%;height:auto;display:inline-block;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+</div>
 <section id="tarifs" class="pricing" style="max-width:100%;">
     <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
         <h2 class="section-title">Tarifs</h2>
@@ -564,7 +661,7 @@
         <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Votre projet de séjour, questions, besoins particuliers..."></textarea></div>
         <button type="submit" class="submit-button">Envoyer la demande de réservation</button>
         <p style="margin-top:1.5rem;text-align:center;color:#666;font-size:0.9rem;">
-            📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="74021b000611341119151d185a171b19">[email&#160;protected]</a> &nbsp;·&nbsp; 📱 +33 X XX XX XX XX
+            📧 pimo29@gmail.com &nbsp;·&nbsp; 📱 +33 6 60 70 60 11
         </p>
     </form>
 </section>
