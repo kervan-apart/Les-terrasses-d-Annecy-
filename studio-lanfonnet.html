@@ -104,11 +104,11 @@
         .dot.active { background: white; transform: scale(1.3); }
 
         /* About */
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 2.5rem; margin-top: 3rem; }
-        .about-card { background: white; padding: 2rem; border-radius: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s,box-shadow 0.3s; }
+        .about-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 3rem; }
+        .about-card { background: white; padding: 1.2rem; border-radius: 14px; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s,box-shadow 0.3s; }
         .about-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.11); }
-        .about-card h3 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--mediterranean-blue); }
-        .about-card p { color: #555; line-height: 1.9; }
+        .about-card h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--mediterranean-blue); }
+        .about-card p { color: #555; line-height: 1.7; font-size: 0.88rem; }
 
         /* Équipements */
         .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
@@ -200,26 +200,14 @@
         footer p { margin: 0.5rem 0; opacity: 0.8; }
         footer a { color: var(--turquoise); text-decoration: none; }
 
-        @media (max-width: 768px) {
-            .hero { height: auto; min-height: 80vh; padding: 6rem 1rem 3rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .hero-features { flex-direction: column; gap: 0.6rem; }
-            .photo-slider { height: 320px; }
-            .section-title { font-size: 1.8rem; }
-            section { padding: 3rem 1rem; }
-            .months-grid { grid-template-columns: 1fr; }
-            .calendar-controls { flex-direction: column; align-items: stretch; }
-            .pricing-cards { grid-template-columns: repeat(2,1fr); }
-            .contact-form { padding: 1.5rem; }
-        }
+        
 
         /* Hero logo */
         .hero-logo {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: 2rem;
+            left: 5.5rem;
             z-index: 10;
             animation: fadeInLeft 1s ease-out;
         }
@@ -238,36 +226,151 @@
             from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
             to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
+        
+
+        /* Nav mobile optimisée */
+        
+
+        /* Bouton Réserver flottant */
+        .btn-reserver-fixe {
+            display: none;
+        }
+        
+
+        /* Drapeaux langue */
+        .lang-flags {
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 1001;
+            display: flex;
+            gap: 6px;
+        }
+        .lang-flags a {
+            font-size: 1.6rem;
+            text-decoration: none;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: transform 0.2s;
+        }
+        .lang-flags a:hover {
+            transform: scale(1.15);
+        }
+        .lang-flags a.active {
+            outline: 2px solid var(--turquoise);
+            border-radius: 4px;
+        }
+
+        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
+
+            /* Nav : une ligne, couleur uniforme */
+            nav ul { gap: 0.8rem; }
+            nav a { font-size: 0.82rem; color: var(--deep-blue); }
+            nav a.back-link { color: var(--deep-blue); }
+
+            /* Hero : colonne centrée */
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 5rem 1rem 3rem;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            /* Logo : centré au-dessus du titre */
             .hero-logo {
                 position: relative;
                 top: auto; left: auto;
                 transform: none;
                 text-align: center;
-                margin-bottom: 1.5rem;
-                animation: fadeInDown 1s ease-out;
+                margin-bottom: 1rem;
+                animation: fadeInUp 1s ease-out;
             }
-            .hero-logo img { height: 140px; }
+            .hero-logo img { height: 120px; }
+
+            /* Titre sur une ligne */
+            .hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+                white-space: nowrap;
+            }
+
+            .hero-subtitle { font-size: 0.78rem; line-height: 1.3; white-space: nowrap; }
+
+            /* Features alignées à gauche, décalées à droite */
+            .hero-features { flex-direction: column; gap: 0.4rem; align-items: flex-start; padding-left: 3rem; }
+            .hero-feature { font-size: 0.88rem; }
+
+            .section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 1rem; }
+            section { padding: 3rem 1rem; }
+            .months-grid { grid-template-columns: 1fr; }
+            .calendar-controls { flex-direction: column; align-items: stretch; }
+            .pricing-cards { grid-template-columns: repeat(2,1fr); }
+            .contact-form { padding: 1.5rem; }
+            /* About cards mobile */
+            .about-grid { grid-template-columns: 1fr; }
+            .about-card { padding: 1.2rem; }
+            .about-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+            .about-card p { font-size: 0.82rem; line-height: 1.6; }
+        }
+
+        @media (min-width: 769px) {
+            .slide img {
+                object-fit: contain;
+                background: #f8f8f8;
+            }
+        }
+
+        /* Boutons hero */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin-top: 1.5rem;
+        }
+        .hero-buttons a {
+            padding: 1.1rem 2.5rem;
+            font-size: 1rem;
+            white-space: nowrap;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .hero-buttons .btn-tarifs {
+            background: var(--sunset);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .hero-buttons .btn-tarifs:hover {
+            background: #ff5722;
+            transform: translateY(-3px);
+        }
+        .hero-buttons .btn-reserver {
+            background: var(--sunset);
+            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .hero-buttons .btn-reserver:hover {
+            background: #ff5722;
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
 
 <!-- Sélecteur de langue -->
-<div style="position:fixed;top:20px;right:20px;z-index:1001;background:white;padding:8px 10px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-    <select onchange="window.location.href=this.value" style="padding:6px 10px;border:2px solid #1b9aaa;border-radius:6px;font-size:14px;cursor:pointer;background:white;">
-        <option value="studio-lanfonnet.html" selected>🇫🇷 Français</option>
-        <option value="studio-lanfonnet-EN.html">🇬🇧 English</option>
-    </select>
-</div>
+
 
 <!-- Navigation -->
 <nav>
     <ul>
-                <li><a href="index-FR.html" class="back-link">← Accueil</a></li>
+                <li><a href="index-FR.html" style="color:var(--deep-blue);font-weight:600;">← Accueil</a></li>
         <li><a href="#studio">Le Studio</a></li>
         <li><a href="#localisation">Localisation</a></li>
-        <li><a href="#tarifs">Tarifs &amp; Disponibilités</a></li>
+        <li class="nav-tarifs"><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Réserver</a></li>
     </ul>
 </nav>
@@ -288,7 +391,10 @@
             <div class="hero-feature">Garage privatif</div>
             <div class="hero-feature">Exposition Est</div>
         </div>
-        <a href="#tarifs" class="cta-button">Voir les tarifs</a>
+        <div class="hero-buttons">
+            <a href="#tarifs" class="btn-tarifs">Voir les tarifs</a>
+            <a href="#contact" class="btn-reserver">✉️ Réserver</a>
+        </div>
     </div>
 </section>
 
@@ -297,39 +403,40 @@
     <div class="photo-slider">
         <div class="slider-container" id="sliderContainer">
             <div class="slide">
-                <img src="images/lanfonnet-Vue-generale-2.jpg" alt="Séjour" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Séjour</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-2.jpg" alt="Séjour lumineux" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Séjour lumineux</div>
                 <div class="slider-caption"><h3>Séjour lumineux</h3><p>Canapé-lit BZ confortable</p></div>
             </div>
             <div class="slide">
-                <img src="images/lanfonnet-Vue-generale-3.jpg" alt="Séjour" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Séjour</div>
-                <div class="slider-caption"><h3>Studio 2/3 personnes</h3><p>lit 1 place</p></div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-3.jpg" alt="Studio 2/3 personnes" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Studio 2/3 personnes</div>
+                <div class="slider-caption"><h3>Studio 2/3 personnes</h3><p>Canapé-lit BZ + lit 1 place</p></div>
             </div>
             <div class="slide">
-                <img src="images/lanfonnet-Vue-generale-2.jpg" alt="Séjour" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Séjour</div>
-                <div class="slider-caption"><h3>Séjour lumineux</h3><p>Canapé-lit BZ confortable</p></div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Terrasse-Est.jpg" alt="Terrasse privative" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Terrasse privative</div>
+                <div class="slider-caption"><h3>Terrasse privative fermée</h3><p>15 m² · Coin repas · À l'ombre dès la mi-journée · Exposition Est</p></div>
             </div>
-            <div class="slide">
-                <img src="images/lanfonnet-Terrasse-Est.jpg" alt="Terrasse Studio Lanfonnet" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Terrasse privative — 15 m²</div>
-                <div class="slider-caption"><h3>Terrasse privative fermée — 15 m²</h3><p>Coin repas · À l'ombre dès la mi-journée · Exposition Est</p></div>
-            </div>
-            <div class="slide">
-                <img src="images/lanfonnet-Coin-cuisine-allege.jpg" alt="Cuisine" onerror="this.style.display='none'">
+             <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-cuisine-allege.jpg" alt="Nouvelle cuisine équipée" onerror="this.style.display='none'">
                 <div class="slide-placeholder">📷 Cuisine équipée</div>
                 <div class="slider-caption"><h3>Cuisine équipée</h3><p>Plaque induction · Réfrigérateur · Micro-ondes</p></div>
             </div>
             <div class="slide">
-                <img src="images/lanfonnet-Coin-nuit-lit-1-personne.jpg" alt="Couchage 3ème personne" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Cuisine équipée</div>
-                <div class="slider-caption"><h3>Couchage 3ème personne</h3><p></p></div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-nuit-lit-1-personne.jpg" alt="Couchage 3ème personne" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Couchage 3ème personne</div>
+                <div class="slider-caption"><h3>Couchage 3ème personne</h3></div>
             </div>
+           
             <div class="slide">
-                <img src="images/lanfonnet-salle-eau.jpg" alt="Salle d'eau" onerror="this.style.display='none'">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Salle-d-eau.jpg" alt="Salle d'eau" onerror="this.style.display='none'">
                 <div class="slide-placeholder">📷 Salle d'eau</div>
                 <div class="slider-caption"><h3>Salle d'eau</h3><p>Douche · WC · Lavabo</p></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-exterieure.jpg" alt="Vue extérieure" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Vue extérieure</div>
+                <div class="slider-caption"><h3>Vue extérieure</h3><p>Rez-de-jardin · Accès direct terrasse</p></div>
             </div>
         </div>
         <div class="slider-nav">
@@ -374,7 +481,6 @@
             <p>&#x2022; <strong>Chauffage central</strong><br>
             &#x2022; <strong>Chauffe-eau solaire</strong><br>
             &#x2022; Tous commerces à <strong>300 m</strong></p>
-        </div>
     </div>
 </section>
 
@@ -396,7 +502,6 @@
             <div class="amenity-item"><div class="amenity-icon">🧹</div><div class="amenity-content"><h4>Ménage final</h4><p>50€ — offert si réalisé par vos soins</p></div></div>
             <div class="amenity-item"><div class="amenity-icon">🌡️</div><div class="amenity-content"><h4>Eau chaude</h4><p>Chauffe-eau solaire + chaudière 24h/24</p></div></div>
             <div class="amenity-item"><div class="amenity-icon">🤝</div><div class="amenity-content"><h4>Hôte disponible</h4><p>Nous sommes joignables pendant votre séjour</p></div></div>
-        </div><div class="amenity-content"><h4>Couchage 2/3 personnes</h4><p>Canapé-lit BZ confortable + lit 1 personne</p></div></div>
         </div>
     </div>
 </section>
@@ -413,16 +518,16 @@
                     <li>&#x2022; Centre Courier : 800 m</li>
                     <li>&#x2022; Vieille-Ville : 1 200 m</li>
                     <li>&#x2022; Marché d'Annecy : 1 200 m</li>
-                    <li>&#x2022; Gare d'Annecy : 800 m</li>
+                    <li>&#x2022; Office de tourisme : 1 200 m</li>
                 </ul>
             </div>
             <div class="location-item">
-                <h4>🏊 Lac & Loisirs</h4>
+                <h4>🏊 Lac & Montagnes</h4>
                 <ul>
                     <li>&#x2022; Lac d'Annecy : 15 min à pied</li>
-                    <li>&#x2022; Plages : 2 km</li>
+                    <li>&#x2022; Plage d'Albigny : 2 km</li>
                     <li>&#x2022; Pistes cyclables : 2 km</li>
-                    <li>&#x2022; Randonnées Semnoz : 2 km</li>
+                    <li>&#x2022; Semnoz ski : 17 km</li>
                 </ul>
             </div>
             <div class="location-item">
@@ -437,7 +542,7 @@
             <div class="location-item">
                 <h4>🚌 Transports</h4>
                 <ul>
-                    <li>&#x2022; Bus / navette : 800 m</li>
+                    <li>&#x2022; Bus urbains : lignes 7 et 8</li>
                     <li>&#x2022; Gare SNCF Annecy : 800 m</li>
                     <li>&#x2022; Aéroport Genève : ~45 min</li>
                     <li>&#x2022; Aéroport Lyon : ~1h30</li>
@@ -448,6 +553,13 @@
 </section>
 
 <!-- Tarifs + Calendrier -->
+
+<!-- Carte de localisation -->
+<div style="width:100%;padding:2rem 2rem 0;background:var(--sand);text-align:center;">
+    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/carte-localisation-2.png"
+         alt="Carte de localisation — Les Terrasses d'Annecy"
+         style="max-width:650px;width:100%;height:auto;display:inline-block;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+</div>
 <section id="tarifs" class="pricing" style="max-width:100%;">
     <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
         <h2 class="section-title">Tarifs</h2>
@@ -526,7 +638,7 @@
 
 <!-- Contact -->
 <section id="contact">
-    <h2 class="section-title">Réserver le Studio Semnoz</h2>
+    <h2 class="section-title">Réserver le Studio Lanfonnet</h2>
     <p class="section-subtitle">Envoyez-nous votre demande — réponse sous 24h</p>
     <form class="contact-form" action="#" method="POST">
         <div class="form-group"><label for="nom">Nom complet *</label><input type="text" id="nom" name="nom" required></div>
@@ -543,7 +655,7 @@
         <div class="form-group"><label for="message">Message *</label><textarea id="message" name="message" required placeholder="Votre projet de séjour, questions, besoins particuliers..."></textarea></div>
         <button type="submit" class="submit-button">Envoyer la demande de réservation</button>
         <p style="margin-top:1.5rem;text-align:center;color:#666;font-size:0.9rem;">
-            📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="03756c77716643666e626a6f2d606c6e">[email&#160;protected]</a> &nbsp;·&nbsp; 📱 +33 X XX XX XX XX
+            📧 pimo29@gmail.com &nbsp;·&nbsp; 📱 +33 6 60 70 60 11
         </p>
     </form>
 </section>
@@ -552,14 +664,14 @@
 <div class="studio-nav">
     <p style="color:var(--deep-blue);font-weight:600;margin-bottom:0.5rem;">Découvrir nos autres studios</p>
     <div class="studio-nav-links">
-        <a href="studio-semnoz.html" class="studio-nav-link active">Studio Semnoz</a>
-        <a href="studio-lanfonnet.html" class="studio-nav-link">Studio Lanfonnet</a>
+        <a href="studio-semnoz.html" class="studio-nav-link">Studio Semnoz</a>
+        <a href="studio-lanfonnet.html" class="studio-nav-link active">Studio Lanfonnet</a>
         <a href="studio-parmelan.html" class="studio-nav-link">Studio Parmelan</a>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2025 Les Terrasses d'Annecy — Tous droits réservés</p>
+    <p>&copy; 2026 Les Terrasses d'Annecy — Tous droits réservés</p>
     <p>Annecy, Haute-Savoie</p>
     <p><a href="index-FR.html">← Retour à l'accueil</a></p>
 </footer>
@@ -612,8 +724,8 @@
     const bookedSaturdays = [];
 
     // Semaine du Festival d'animation — à mettre à jour chaque année
-    // 2026 : Festival du 21 au 27 juin → arrivée samedi 19 juin
-    const festivalSaturdays = ['2026-06-19'];
+    // 2026 : Festival du 8 au 13 juin → arrivée samedi 6 juin
+    const festivalSaturdays = ['2026-06-06'];
 
     const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
     const dayNames = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
