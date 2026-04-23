@@ -316,12 +316,7 @@
             .about-card p { font-size: 0.82rem; line-height: 1.6; }
         }
 
-        @media (min-width: 769px) {
-            .slide img {
-                object-fit: contain;
-                background: #f8f8f8;
-            }
-        }
+        
 
         /* Boutons hero */
         .hero-buttons {
@@ -356,6 +351,15 @@
         .hero-buttons .btn-reserver:hover {
             background: #ff5722;
             transform: translateY(-3px);
+        }
+
+        @media (min-width: 769px) {
+            .photo-slider { height: auto; }
+            .slider-container { height: auto; }
+            .slide { height: auto; min-height: 200px; }
+            .slide img { object-fit: contain; width: 100%; height: auto; max-height: 600px; position: relative; }
+            .slider-caption { position: relative; background: linear-gradient(to top,rgba(0,0,0,0.75),transparent); margin-top: -80px; }
+            .slider-nav { top: 40%; }
         }
     </style>
 </head>
