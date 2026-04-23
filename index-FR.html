@@ -546,11 +546,9 @@
 <body>
 
 <!-- Sélecteur de langue -->
-<div style="position: fixed; top: 20px; right: 20px; z-index: 1001; background: white; padding: 8px 10px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
-    <select onchange="window.location.href=this.value" style="padding: 6px 10px; border: 2px solid #1b9aaa; border-radius: 6px; font-size: 14px; cursor: pointer; background: white;">
-        <option value="index-FR.html" selected>🇫🇷 Français</option>
-        <option value="index-EN.html">🇬🇧 English</option>
-    </select>
+<div style="position:fixed;top:14px;right:14px;z-index:1001;display:flex;gap:6px;">
+    <a href="index-FR.html" style="font-size:1.6rem;text-decoration:none;outline:2px solid #1b9aaa;border-radius:4px;" title="Français">🇫🇷</a>
+    <a href="index-EN.html" style="font-size:1.6rem;text-decoration:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.2));" title="English">🇬🇧</a>
 </div>
 
 <!-- Navigation -->
