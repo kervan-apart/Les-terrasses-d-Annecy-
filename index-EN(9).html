@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Les Terrasses d'Annecy: 3 fully equipped studios with private terrace and garage, 800 m from the town centre. Studio Semnoz, Studio Lanfonnet, Studio Parmelan. Book directly.">
+    <meta name="keywords" content="holiday rental Annecy, Les Terrasses d'Annecy, studio Annecy, apartment Annecy, terrace Annecy, holidays Haute-Savoie">
+    <title>Les Terrasses d'Annecy | Holiday Rentals</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --mediterranean-blue: #0066cc;
+            --turquoise: #1b9aaa;
+            --sand: #f5e6d3;
+            --terracotta: #d4745f;
+            --deep-blue: #1e5a8e;
+            --warm-white: #fafaf8;
+            --olive: #7a8450;
+            --sunset: #ff6b35;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background: var(--warm-white); }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--deep-blue); font-weight: 700; }
+
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            padding: 1rem 2rem; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: var(--deep-blue); font-weight: 600; transition: color 0.3s; font-size: 1.05rem; }
+        nav a:hover { color: var(--turquoise); }
+
+        .hero {
+            position: relative; height: 85vh;
+            background: linear-gradient(135deg, var(--mediterranean-blue) 0%, var(--turquoise) 100%);
+            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: white;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255,107,53,0.15) 0%, transparent 50%);
+            animation: waves 15s ease-in-out infinite;
+        }
+        @keyframes waves { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+
+        .hero-logo {
+            position: absolute; top: 8%; left: 50%; transform: translateX(-50%);
+            z-index: 10; animation: fadeInUp 1s ease-out;
+        }
+        .hero-logo img { height: 140px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+        .hero-content {
+            position: relative; z-index: 2; max-width: 900px;
+            padding: 2rem; margin-top: 100px; animation: fadeInUp 1s ease-out;
+        }
+        .hero h1 { font-size: 4rem; color: white; margin-bottom: 1rem; text-shadow: 2px 4px 8px rgba(0,0,0,0.2); }
+        .hero-subtitle { font-size: 1.5rem; margin-bottom: 2rem; font-weight: 300; }
+        .hero-features { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .hero-feature { display: flex; align-items: center; gap: 0.5rem; font-size: 1.1rem; }
+        .hero-feature::before {
+            content: '✓'; background: rgba(255,255,255,0.3); width: 28px; height: 28px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block; padding: 1.2rem 3rem; background: var(--sunset); color: white;
+            text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: 700;
+            transition: all 0.3s ease; box-shadow: 0 8px 20px rgba(255,107,53,0.3);
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(255,107,53,0.4); background: #ff5722; }
+
+        section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        .section-title {
+            font-size: 2.8rem; text-align: center; margin-bottom: 1rem;
+            position: relative; padding-bottom: 1.5rem;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px;
+            background: linear-gradient(90deg, var(--turquoise), var(--mediterranean-blue)); border-radius: 2px;
+        }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .studios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap: 2.5rem; margin-top: 3rem; }
+        .studio-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+        .studio-card:hover { transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,0,0,0.14); }
+        .studio-photo { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, var(--mediterranean-blue), var(--turquoise)); overflow: hidden; position: relative; }
+        .studio-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .studio-photo-placeholder { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); color: white; font-size: 3rem; text-align: center; }
+        .studio-badge { position: absolute; top: 1rem; right: 1rem; background: var(--sunset); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+        .studio-body { padding: 2rem; flex: 1; display: flex; flex-direction: column; }
+        .studio-name { font-size: 1.8rem; color: var(--deep-blue); margin-bottom: 0.5rem; }
+        .studio-tagline { font-size: 1rem; color: #888; margin-bottom: 1.2rem; font-style: italic; }
+        .studio-features { list-style: none; margin-bottom: 1.5rem; flex: 1; }
+        .studio-features li { padding: 0.4rem 0; color: #555; font-size: 0.95rem; border-bottom: 1px solid #f0f0f0; }
+        .studio-features li:last-child { border-bottom: none; }
+        .studio-price { font-size: 1.5rem; font-weight: 700; color: var(--turquoise); margin-bottom: 1.2rem; }
+        .studio-price span { font-size: 1rem; font-weight: 400; color: #888; }
+        .studio-btn { display: block; text-align: center; padding: 1rem; background: var(--mediterranean-blue); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: all 0.3s; }
+        .studio-btn:hover { background: var(--turquoise); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,188,212,0.3); }
+
+        .annecy-section { background: var(--sand); }
+        .annecy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 2rem; margin-top: 3rem; }
+        .annecy-card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 3px 15px rgba(0,0,0,0.06); text-align: center; }
+        .annecy-card .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .annecy-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--deep-blue); }
+        .annecy-card p { color: #666; font-size: 0.95rem; }
+
+        .contact-simple { background: var(--deep-blue); color: white; text-align: center; padding: 5rem 2rem; }
+        .contact-simple h2 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
+        .contact-simple p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.85; }
+        .contact-info { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .contact-info a { color: var(--turquoise); text-decoration: none; font-size: 1.1rem; font-weight: 600; }
+        .contact-info a:hover { text-decoration: underline; }
+
+        footer { background: var(--deep-blue); color: white; text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer p { margin: 0.5rem 0; opacity: 0.8; }
+        footer a { color: var(--turquoise); text-decoration: none; }
+
+        /* Language flags */
+        .lang-flags {
+            position: fixed; top: 14px; right: 14px; z-index: 1001;
+            display: flex; gap: 6px;
+        }
+        .lang-flags a {
+            font-size: 1.6rem; text-decoration: none; line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); transition: transform 0.2s;
+        }
+        .lang-flags a:hover { transform: scale(1.15); }
+        .lang-flags a.active { outline: 2px solid var(--turquoise); border-radius: 4px; }
+
+        @media (max-width: 768px) {
+            .hero-logo { position: relative; top: auto; left: auto; transform: none; text-align: center; margin-top: 3.5rem; margin-bottom: 1rem; }
+            .hero-logo img { height: 120px; }
+            .hero { height: auto; min-height: 100vh; padding: 5rem 1rem 3rem; flex-direction: column; justify-content: center; }
+            .hero h1 { font-size: 2.2rem; line-height: 1.2; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-features { flex-direction: column; gap: 0.8rem; }
+            .section-title { font-size: 1.8rem; }
+            nav ul { gap: 1rem; }
+            nav a { font-size: 0.9rem; }
+            section { padding: 3rem 1rem; }
+            .studios-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Language selector -->
+<div class="lang-flags">
+    <a href="index-FR.html" title="Français" style="opacity:0.6;">
+        <img src="https://flagcdn.com/w40/fr.png" width="32" height="21" alt="Français" style="display:block;border-radius:3px;vertical-align:middle;">
+    </a>
+    <a href="index-EN.html" title="English" style="outline:2px solid #1b9aaa;border-radius:4px;">
+        <img src="https://flagcdn.com/w40/gb.png" width="32" height="21" alt="English" style="display:block;border-radius:3px;vertical-align:middle;">
+    </a>
+</div>
+
+<!-- Navigation -->
+<nav>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#studios">Our Studios</a></li>
+        <li><a href="#annecy">Annecy</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section id="home" class="hero" style="max-width:100%;padding:0;">
+    <div class="hero-logo">
+        <img src="https://kervan-apart.github.io/kervan-apart/images/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
+    </div>
+    <div class="hero-content">
+        <h1>Les Terrasses d'Annecy</h1>
+        <p class="hero-subtitle">· 3 fully equipped studios a short walk from the town centre ·<br>· Lake Annecy 15 minutes on foot ·</p>
+        <div class="hero-features">
+            <div class="hero-feature">800 m from the town centre</div>
+            <div class="hero-feature">Lake 15 min on foot</div>
+            <div class="hero-feature">Private terraces</div>
+            <div class="hero-feature">Garage included</div>
+        </div>
+        <a href="#studios" class="cta-button">View our studios</a>
+    </div>
+</section>
+
+<!-- Our studios -->
+<section id="studios">
+    <h2 class="section-title">Our 3 Studios</h2>
+    <p class="section-subtitle">3 fully equipped studios, private terrace and garage included — book directly with no commission fees</p>
+
+    <div class="studios-grid">
+
+        <!-- Studio Semnoz -->
+        <div class="studio-card">
+            <div class="studio-photo">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Terrasse-3.jpg" alt="Studio Semnoz Annecy" onerror="this.style.display='none'">
+                <div class="studio-photo-placeholder">🏔️</div>
+                <div class="studio-badge">Weekly rental</div>
+            </div>
+            <div class="studio-body">
+                <h3 class="studio-name">Studio Semnoz</h3>
+                <p class="studio-tagline">22 m² · Private terrace 25 m² · West-facing</p>
+                <ul class="studio-features">
+                    <li>&#x2022; 2 people</li>
+                    <li>&#x2022; Comfortable sofa bed (BZ)</li>
+                    <li>&#x2022; Private enclosed terrace</li>
+                    <li>&#x2022; Private garage included</li>
+                    <li>&#x2022; Fully equipped kitchen · High-speed WiFi</li>
+                </ul>
+                <div class="studio-price">From €390 <span>/ week</span></div>
+                <a href="studio-semnoz-EN.html" class="studio-btn">Discover this studio →</a>
+            </div>
+        </div>
+
+        <!-- Studio Lanfonnet -->
+        <div class="studio-card">
+            <div class="studio-photo">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-2.jpg" alt="Studio Lanfonnet Annecy" onerror="this.style.display='none'">
+                <div class="studio-photo-placeholder">🌊</div>
+                <div class="studio-badge">Weekly rental</div>
+            </div>
+            <div class="studio-body">
+                <h3 class="studio-name">Studio Lanfonnet</h3>
+                <p class="studio-tagline">21 m² · Private terrace 15 m² · East-facing</p>
+                <ul class="studio-features">
+                    <li>&#x2022; 2/3 people</li>
+                    <li>&#x2022; Sofa bed (BZ) + single bed</li>
+                    <li>&#x2022; Private enclosed terrace</li>
+                    <li>&#x2022; Private garage included</li>
+                    <li>&#x2022; Fully equipped kitchen · High-speed WiFi</li>
+                </ul>
+                <div class="studio-price">From €390 <span>/ week</span></div>
+                <a href="studio-lanfonnet-EN.html" class="studio-btn">Discover this studio →</a>
+            </div>
+        </div>
+
+        <!-- Studio Parmelan -->
+        <div class="studio-card">
+            <div class="studio-photo">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/parmelan/Terrasse-1.jpg" alt="Studio Parmelan Annecy" onerror="this.style.display='none'">
+                <div class="studio-photo-placeholder">⛰️</div>
+                <div class="studio-badge">Weekly rental</div>
+            </div>
+            <div class="studio-body">
+                <h3 class="studio-name">Studio Parmelan</h3>
+                <p class="studio-tagline">20 m² · Private terrace 15 m² · East-facing</p>
+                <ul class="studio-features">
+                    <li>&#x2022; 2 people</li>
+                    <li>&#x2022; Comfortable sofa bed (BZ)</li>
+                    <li>&#x2022; Private enclosed terrace</li>
+                    <li>&#x2022; Private garage included</li>
+                    <li>&#x2022; Fully equipped kitchen · High-speed WiFi</li>
+                </ul>
+                <div class="studio-price">From €380 <span>/ week</span></div>
+                <a href="studio-parmelan-EN.html" class="studio-btn">Discover this studio →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Annecy -->
+<section id="annecy" class="annecy-section" style="max-width:100%;">
+    <div style="max-width:1200px;margin:0 auto;">
+        <h2 class="section-title">Why Annecy?</h2>
+        <p class="section-subtitle">800 m from the town centre and 15 minutes on foot from the lake — make the most of everything Annecy has to offer</p>
+
+        <div class="annecy-grid">
+            <div class="annecy-card">
+                <div class="icon">🏔️</div>
+                <h3>Mountains & Hiking</h3>
+                <p>Semnoz, Bornes and Aravis massifs — trails for all levels just outside the city. Scenic viewpoints: Semnoz 17 km, Col de la Forclaz 12 km.</p>
+            </div>
+            <div class="annecy-card">
+                <div class="icon">🏊</div>
+                <h3>Lake Annecy</h3>
+                <p>One of the purest lakes in Europe — swimming, paddleboarding, sailing, kayaking or simply strolling along its shores on foot or by bike (40 km cycle path).</p>
+            </div>
+            <div class="annecy-card">
+                <div class="icon">🏛️</div>
+                <h3>Old Town</h3>
+                <p>Canals, Palais de l'Isle, castle and lively markets — a historic town centre ranked among the most beautiful in France, easily reached via the shaded Thiou riverside walk (car-free).</p>
+            </div>
+            <div class="annecy-card">
+                <div class="icon">🚵</div>
+                <h3>Sports & Activities</h3>
+                <p>Cycling, skiing in winter, paragliding, via ferrata — Annecy is a European capital of outdoor sport.</p>
+            </div>
+        </div>
+
+        <!-- Annecy photo slider -->
+        <div class="annecy-slider" style="margin-top:3rem;position:relative;overflow:hidden;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.15);">
+            <div class="annecy-slider-track" id="annecySliderTrack" style="display:flex;transition:transform 0.6s ease;height:480px;">
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-1.jpeg" alt="Annecy, the Pearl of the Alps on your doorstep" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Annecy, the Pearl of the Alps on your doorstep</h3>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-2.jpeg" alt="Picturesque market in the Old Town" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Picturesque market in the Old Town</h3>
+                        <p style="opacity:0.9;">3 times a week</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-3.jpeg" alt="Palais de l'Isle" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Palais de l'Isle</h3>
+                        <p style="opacity:0.9;">At the heart of the Old Town and the Thiou river</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-4.jpeg" alt="Pleasant lakeside walks" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Pleasant lakeside walks</h3>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-5.jpeg" alt="A vibrant city" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">A vibrant city</h3>
+                        <p style="opacity:0.9;">Lively all year round</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-6.jpeg" alt="Fête du Lac" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Fête du Lac — Lake Festival</h3>
+                        <p style="opacity:0.9;">Every first Saturday of August</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-7.jpeg" alt="Semnoz viewpoint" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Semnoz viewpoint</h3>
+                        <p style="opacity:0.9;">Breathtaking in every season</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-8.jpeg" alt="Thiou riverside walk" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Thiou riverside walk</h3>
+                        <p style="opacity:0.9;">A scenic route straight to the Old Town</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-9.jpeg" alt="Summer swimming" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Summer swimming</h3>
+                        <p style="opacity:0.9;">In the pure waters of the lake</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--mediterranean-blue),var(--deep-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-10.jpeg" alt="Cycle paths — 40 km" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Cycle paths — 40 km</h3>
+                        <p style="opacity:0.9;">Easy and enchanting between lake and mountains</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--deep-blue),var(--turquoise));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-11.jpeg" alt="Boat trips" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Boat trips</h3>
+                        <p style="opacity:0.9;">A must-do to discover the lake from a different angle</p>
+                    </div>
+                </div>
+
+                <div style="min-width:100%;height:100%;position:relative;background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));">
+                    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/annecy-12.jpeg" alt="Many tourist sites nearby" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:contain;background:white;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);padding:2rem;color:white;text-align:center;">
+                        <h3 style="color:white;font-size:1.6rem;margin-bottom:0.3rem;">Many tourist sites nearby</h3>
+                    </div>
+                </div>
+
+            </div>
+            <div id="annecyDots" style="position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:0.5rem;z-index:10;"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Localisation map -->
+<div style="width:100%;padding:2rem;background:var(--sand);text-align:center;">
+    <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/carte-localisation-2.png"
+         alt="Location map — Les Terrasses d'Annecy"
+         style="max-width:700px;width:100%;height:auto;display:inline-block;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.1);">
+</div>
+
+<!-- Contact -->
+<div id="contact" class="contact-simple">
+    <h2>Any questions? Get in touch</h2>
+    <p>We usually reply within 24 hours</p>
+    <a href="#studios" class="cta-button" style="margin-bottom:2rem;display:inline-block;">Choose a studio</a>
+    <div class="contact-info">
+        <a href="mailto:pimo29@gmail.com">📧 pimo29@gmail.com</a>
+        <a href="https://wa.me/33660706011">📱 WhatsApp : +33 6 60 70 60 11</a>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Les Terrasses d'Annecy — All rights reserved</p>
+    <p>Annecy, Haute-Savoie, France</p>
+</footer>
+
+<script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Annecy slider
+    let annecySlide = 0;
+    const annecyTotal = 12;
+    const annecyTrack = document.getElementById('annecySliderTrack');
+    const annecyDotsEl = document.getElementById('annecyDots');
+
+    for (let i = 0; i < annecyTotal; i++) {
+        const dot = document.createElement('div');
+        dot.style.cssText = `width:10px;height:10px;border-radius:50%;background:${i===0?'white':'rgba(255,255,255,0.5)'};cursor:pointer;transition:all 0.3s;`;
+        dot.onclick = () => annecyGo(i);
+        annecyDotsEl.appendChild(dot);
+    }
+
+    function annecyUpdateDots() {
+        annecyDotsEl.querySelectorAll('div').forEach((d, i) => {
+            d.style.background = i === annecySlide ? 'white' : 'rgba(255,255,255,0.5)';
+        });
+    }
+
+    function annecyGo(n) { annecySlide = n; annecyTrack.style.transform = `translateX(-${annecySlide*100}%)`; annecyUpdateDots(); }
+    function annecyNext() { annecyGo((annecySlide + 1) % annecyTotal); }
+    setInterval(annecyNext, 6000);
+</script>
+
+</body>
+</html>
