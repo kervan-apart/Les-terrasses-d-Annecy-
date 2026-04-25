@@ -895,11 +895,8 @@
 
     async function loadSheetData() {
         try {
-            if (typeof SHEET_ID === 'undefined' || SHEET_ID === 'COLLER_VOTRE_ID_ICI') return;
-            const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
-
-            // Tarifs
-            const tr = await fetch(base + '&sheet=Tarifs');
+            if (typeof URL_TARIFS === 'undefined') return;
+            const tr = await fetch(URL_TARIFS);
             if (tr.ok) {
                 const rows = parseCSV(await tr.text());
                 const row = rows.find(r => r[0].trim().toLowerCase() === STUDIO_NAME.toLowerCase());
@@ -912,7 +909,7 @@
             }
 
             // Réservations
-            const rr = await fetch(base + '&sheet=Reservations');
+            const rr = await fetch(URL_RESERVATIONS);
             if (rr.ok) {
                 const rows = parseCSV(await rr.text());
                 bookedSaturdays.length = 0;
