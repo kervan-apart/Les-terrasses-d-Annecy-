@@ -24,9 +24,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body { font-family: 'Lato', sans-serif; line-height: 1.7; color: #333; background: var(--warm-white); }
-
         h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--deep-blue); font-weight: 700; }
 
         nav {
@@ -37,7 +35,6 @@
         nav ul { list-style: none; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
         nav a { text-decoration: none; color: var(--deep-blue); font-weight: 600; transition: color 0.3s; font-size: 1rem; }
         nav a:hover { color: var(--turquoise); }
-        nav .back-link { color: var(--turquoise); }
 
         .hero {
             position: relative; height: 70vh;
@@ -110,7 +107,7 @@
         .about-card h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--mediterranean-blue); }
         .about-card p { color: #555; line-height: 1.7; font-size: 0.88rem; }
 
-        /* Équipements */
+        /* Amenities */
         .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.5rem; margin-top: 3rem; }
         .amenity-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.3rem; background: white; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.06); transition: all 0.3s; }
         .amenity-item:hover { transform: translateX(4px); box-shadow: 0 5px 18px rgba(0,0,0,0.1); }
@@ -118,7 +115,7 @@
         .amenity-content h4 { margin-bottom: 0.3rem; color: var(--deep-blue); font-size: 1rem; }
         .amenity-content p { color: #666; font-size: 0.9rem; }
 
-        /* Localisation */
+        /* Location */
         .location { background: var(--deep-blue); color: white; }
         .location .section-title, .location .section-subtitle { color: white; }
         .location-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 2rem; margin-top: 3rem; }
@@ -128,7 +125,7 @@
         .location-item li { padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.95rem; }
         .location-item li:last-child { border-bottom: none; }
 
-        /* Tarifs */
+        /* Pricing */
         .pricing { background: var(--sand); }
         .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 900px; margin-left: auto; margin-right: auto; }
         .season-card { background: white; border-radius: 14px; padding: 1.8rem; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.07); }
@@ -142,7 +139,7 @@
         .season-period { font-size: 0.88rem; color: #666; margin-top: 0.8rem; line-height: 1.5; }
         .pricing-note { max-width: 700px; margin: 2rem auto 0; padding: 1.5rem; background: white; border-radius: 10px; font-size: 0.95rem; color: #555; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,0.05); }
 
-        /* Calendrier */
+        /* Calendar */
         .calendar-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
         .year-selector { display: flex; align-items: center; gap: 1rem; }
         .year-btn { background: var(--mediterranean-blue); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.3s; }
@@ -190,7 +187,7 @@
         .submit-button { width: 100%; padding: 1.1rem; background: var(--mediterranean-blue); color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
         .submit-button:hover { background: var(--turquoise); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,188,212,0.3); }
 
-        /* Nav studios */
+        /* Studio nav */
         .studio-nav { background: var(--sand); padding: 2rem; text-align: center; }
         .studio-nav-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; }
         .studio-nav-link { padding: 0.8rem 1.8rem; border: 2px solid var(--mediterranean-blue); color: var(--mediterranean-blue); text-decoration: none; border-radius: 30px; font-weight: 600; transition: all 0.3s; }
@@ -200,188 +197,69 @@
         footer p { margin: 0.5rem 0; opacity: 0.8; }
         footer a { color: var(--turquoise); text-decoration: none; }
 
-        
-
         /* Hero logo */
-        .hero-logo {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 5.5rem;
-            z-index: 10;
-            animation: fadeInLeft 1s ease-out;
-        }
-        .hero-logo img {
-            height: 180px;
-            width: auto;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-            transition: transform 0.3s ease;
-        }
+        .hero-logo { position: absolute; top: 50%; transform: translateY(-50%); left: 5.5rem; z-index: 10; animation: fadeInLeft 1s ease-out; }
+        .hero-logo img { height: 180px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); transition: transform 0.3s ease; }
         .hero-logo img:hover { transform: scale(1.05); }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px) translateY(-50%); }
-            to   { opacity: 1; transform: translateX(0) translateY(-50%); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        
+        @keyframes fadeInLeft { from{opacity:0;transform:translateX(-30px) translateY(-50%)} to{opacity:1;transform:translateX(0) translateY(-50%)} }
 
-        /* Nav mobile optimisée */
-        
+        .btn-reserver-fixe { display: none; }
 
-        /* Bouton Réserver flottant */
-        .btn-reserver-fixe {
-            display: none;
-        }
-        
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: nowrap; margin-top: 1.5rem; }
+        .hero-buttons a { padding: 1.1rem 2.5rem; font-size: 1rem; white-space: nowrap; border-radius: 50px; font-weight: 700; text-decoration: none; color: white; transition: all 0.3s ease; }
+        .hero-buttons .btn-tarifs { background: var(--sunset); box-shadow: 0 8px 20px rgba(255,107,53,0.3); }
+        .hero-buttons .btn-tarifs:hover { background: #ff5722; transform: translateY(-3px); }
+        .hero-buttons .btn-reserver { background: var(--sunset); box-shadow: 0 8px 20px rgba(255,107,53,0.3); }
+        .hero-buttons .btn-reserver:hover { background: #ff5722; transform: translateY(-3px); }
 
-        /* Drapeaux langue */
-        .lang-flags {
-            position: fixed;
-            top: 14px;
-            right: 14px;
-            z-index: 1001;
-            display: flex;
-            gap: 6px;
-        }
-        .lang-flags a {
-            font-size: 1.6rem;
-            text-decoration: none;
-            line-height: 1;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-            transition: transform 0.2s;
-        }
-        .lang-flags a:hover {
-            transform: scale(1.15);
-        }
-        .lang-flags a.active {
-            outline: 2px solid var(--turquoise);
-            border-radius: 4px;
-        }
-
-        /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-
-            /* Nav : une ligne, couleur uniforme */
-            nav ul { gap: 0.8rem; }
-            nav a { font-size: 0.82rem; color: var(--deep-blue); }
-            nav a.back-link { color: var(--deep-blue); }
-
-            /* Hero : colonne centrée */
-            .hero {
-                height: auto;
-                min-height: 100vh;
-                padding: 5rem 1rem 3rem;
-                flex-direction: column;
-                justify-content: center;
-            }
-
-            /* Logo : centré au-dessus du titre */
-            .hero-logo {
-                position: relative;
-                top: auto; left: auto;
-                transform: none;
-                text-align: center;
-                margin-bottom: 1rem;
-                animation: fadeInUp 1s ease-out;
-            }
+            .hero { height: auto; min-height: 100vh; padding: 5rem 1rem 3rem; flex-direction: column; justify-content: center; }
+            .hero-logo { position: relative; top: auto; left: auto; transform: none; text-align: center; margin-bottom: 1rem; }
             .hero-logo img { height: 120px; }
-
-            /* Titre sur une ligne */
-            .hero h1 {
-                font-size: 1.8rem;
-                line-height: 1.2;
-                white-space: nowrap;
-            }
-
+            .hero h1 { font-size: 1.8rem; line-height: 1.2; white-space: nowrap; }
             .hero-subtitle { font-size: 0.78rem; line-height: 1.3; white-space: nowrap; }
-
-            /* Features alignées à gauche, décalées à droite */
             .hero-features { flex-direction: column; gap: 0.4rem; align-items: flex-start; padding-left: 3rem; }
             .hero-feature { font-size: 0.88rem; }
-
+            .photo-slider { height: 320px; }
             .section-title { font-size: 1.8rem; }
-            .section-subtitle { font-size: 1rem; }
             section { padding: 3rem 1rem; }
             .months-grid { grid-template-columns: 1fr; }
             .calendar-controls { flex-direction: column; align-items: stretch; }
             .pricing-cards { grid-template-columns: repeat(2,1fr); }
             .contact-form { padding: 1.5rem; }
-            /* About cards mobile */
             .about-grid { grid-template-columns: 1fr; }
-            .about-card { padding: 1.2rem; }
-            .about-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-            .about-card p { font-size: 0.82rem; line-height: 1.6; }
-        }
-
-        
-
-        /* Boutons hero */
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: nowrap;
-            margin-top: 1.5rem;
-        }
-        .hero-buttons a {
-            padding: 1.1rem 2.5rem;
-            font-size: 1rem;
-            white-space: nowrap;
-            border-radius: 50px;
-            font-weight: 700;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .hero-buttons .btn-tarifs {
-            background: var(--sunset);
-            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
-        }
-        .hero-buttons .btn-tarifs:hover {
-            background: #ff5722;
-            transform: translateY(-3px);
-        }
-        .hero-buttons .btn-reserver {
-            background: var(--sunset);
-            box-shadow: 0 8px 20px rgba(255,107,53,0.3);
-        }
-        .hero-buttons .btn-reserver:hover {
-            background: #ff5722;
-            transform: translateY(-3px);
         }
 
         @media (min-width: 769px) {
-            .photo-slider { height: auto; }
-            .slider-container { height: auto; }
-            .slide { height: auto; min-height: 200px; }
-            .slide img { object-fit: contain; width: 100%; height: auto; max-height: 600px; position: relative; }
-            .slider-caption { position: relative; background: linear-gradient(to top,rgba(0,0,0,0.75),transparent); margin-top: -80px; }
-            .slider-nav { top: 40%; }
+            .slide img { object-fit: contain; }
         }
     </style>
 </head>
 <body>
 
-<!-- Sélecteur de langue -->
-
+<!-- Language selector -->
+<div style="position:fixed;top:14px;right:14px;z-index:1001;display:flex;gap:8px;align-items:center;">
+    <a href="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/studio-lanfonnet-FR.html" title="Français" style="opacity:0.6;display:inline-block;">
+        <img src="https://flagcdn.com/w40/fr.png" width="32" height="21" alt="Français" style="display:block;border-radius:3px;">
+    </a>
+    <a href="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/studio-lanfonnet-EN.html" title="English" style="opacity:0.6;display:inline-block;">
+        <img src="https://flagcdn.com/w40/gb.png" width="32" height="21" alt="English" style="display:block;border-radius:3px;">
+    </a>
+</div>
 
 <!-- Navigation -->
 <nav>
     <ul>
-                <li><a href="index-FR.html" style="color:var(--deep-blue);font-weight:600;">← Accueil</a></li>
+        <li><a href="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/index-FR.html" style="color:var(--turquoise);font-weight:600;">← Accueil</a></li>
         <li><a href="#studio">Le Studio</a></li>
         <li><a href="#localisation">Localisation</a></li>
-        <li class="nav-tarifs"><a href="#tarifs">Tarifs</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
         <li><a href="#contact">Réserver</a></li>
     </ul>
 </nav>
 
 <!-- Hero -->
 <section id="studio" class="hero" style="max-width:100%;padding:0;">
-    <!-- Logo -->
     <div class="hero-logo">
         <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/logo-terrasses-annecy-1.png" alt="Les Terrasses d'Annecy">
     </div>
@@ -396,54 +274,65 @@
             <div class="hero-feature">Exposition Est</div>
         </div>
         <div class="hero-buttons">
-            <a href="#tarifs" class="btn-tarifs">Voir les tarifs</a>
+            <a href="#pricing" class="btn-tarifs">Voir les tarifs</a>
             <a href="#contact" class="btn-reserver">✉️ Réserver</a>
         </div>
     </div>
 </section>
 
-<!-- Slider photos -->
+<!-- Slider -->
 <div style="background:white;margin-top:-2rem;">
     <div class="photo-slider">
         <div class="slider-container" id="sliderContainer">
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-2.jpg" alt="Séjour lumineux" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Séjour lumineux</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-2.jpg" alt="Enclosed private terrace" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Enclosed private terrace</div>
                 <div class="slider-caption"><h3>Séjour lumineux</h3><p>Canapé-lit BZ confortable</p></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-d-ensemble.jpg" alt="Accès Terrasse de plain-pied" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Accès Terrasse de plain-pied</div>
-                <div class="slider-caption"><h3>Séjour lumineux</h3><p>Canapé-lit BZ confortable</p></div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-d-ensemble.jpg" alt="Shaded dining area in summer" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Shaded dining area in summer</div>
+                <div class="slider-caption"><h3>Accès Terrasse de plain-pied</h3></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-3.jpg" alt="Studio 2/3 personnes" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Studio 2/3 personnes</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-generale-3.jpg" alt="Spacious living area" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Spacious living area</div>
                 <div class="slider-caption"><h3>Studio 2/3 personnes</h3><p>Canapé-lit BZ + lit 1 place</p></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Terrasse-Est-2.jpg" alt="Terrasse privative" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Terrasse privative</div>
-                <div class="slider-caption"><h3>Terrasse privative fermée</h3><p>15 m² · Coin repas · À l'ombre dès la mi-journée · Exposition Est</p></div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Terrasse-Est-2.jpg" alt="Comfortable sofa bed" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Comfortable sofa bed</div>
+                <div class="slider-caption"><h3>Terrasse privative fermée</h3></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-cuisine-allege.jpg" alt="Nouvelle cuisine équipée" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Cuisine équipée</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-cuisine-allege.jpg" alt="Kitchen" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Kitchen</div>
+                <div class="slider-caption"><h3></h3></div>
+            </div>
+            <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-nuit-lit-1-personne.jpg" alt="Equipped kitchen" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Induction hob · Microwave · Toaster · Kettle</div>
                 <div class="slider-caption"><h3>Cuisine équipée</h3><p>Plaque induction · Réfrigérateur · Micro-ondes</p></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Coin-nuit-lit-1-personne.jpg" alt="Couchage 3ème personne" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Couchage 3ème personne</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Salle-d-eau.jpg" alt="Shower room access" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Shower room access</div>
                 <div class="slider-caption"><h3>Couchage 3ème personne</h3></div>
             </div>
             <div class="slide">
-                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Salle-d-eau.jpg" alt="Salle d'eau" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Salle d'eau</div>
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-exterieure.jpg" alt="Shower room / WC" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Shower room / WC</div>
                 <div class="slider-caption"><h3>Salle d'eau</h3><p>Douche · WC · Lavabo</p></div>
             </div>
             <div class="slide">
+                <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/semnoz/Studio-SEMNOZ-vue-exterieure.jpg" alt="Exterior view" onerror="this.style.display='none'">
+                <div class="slide-placeholder">📷 Exterior view</div>
+                <div class="slider-caption"><h3>Vue extérieure</h3><p>Rez-de-jardin · Accès direct terrasse</p></div>
+            </div>
+        </div>
+            <div class="slide">
                 <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/lanfonnet/Vue-exterieure.jpg" alt="Vue extérieure" onerror="this.style.display='none'">
-                <div class="slide-placeholder">📷 Vue extérieure</div>
+                <div class="slide-placeholder"></div>
                 <div class="slider-caption"><h3>Vue extérieure</h3><p>Rez-de-jardin · Accès direct terrasse</p></div>
             </div>
         </div>
@@ -455,7 +344,7 @@
     </div>
 </div>
 
-<!-- À propos -->
+<!-- About -->
 <section id="apropos">
     <h2 class="section-title">Le Studio Lanfonnet</h2>
     <p class="section-subtitle">Un studio cosy avec terrasse privative fraîche dès la mi-journée, idéal pour 2 ou 3 personnes</p>
@@ -472,7 +361,7 @@
             <h3>🌿 Votre Terrasse</h3>
             <p>&#x2022; Terrasse privative <strong>fermée de 15 m²</strong><br>
             &#x2022; <strong>Coin repas</strong> extérieur<br>
-            &#x2022; <strong>À l'ombre dès la mi-journée</strong> — idéale en été<br>
+            &#x2022; Salon de jardin<br>
             &#x2022; Accès direct depuis le studio<br>
             &#x2022; Cadre verdoyant et calme</p>
         </div>
@@ -489,10 +378,11 @@
             <p>&#x2022; <strong>Chauffage central</strong><br>
             &#x2022; <strong>Chauffe-eau solaire</strong><br>
             &#x2022; Tous commerces à <strong>300 m</strong></p>
+        </div>
     </div>
 </section>
 
-<!-- Équipements -->
+<!-- Amenities -->
 <section id="equipements" style="background:var(--sand);max-width:100%;">
     <div style="max-width:1200px;margin:0 auto;">
         <h2 class="section-title">Équipements</h2>
@@ -514,10 +404,10 @@
     </div>
 </section>
 
-<!-- Localisation -->
+<!-- Location -->
 <section id="localisation" class="location" style="max-width:100%;">
     <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
-        <h2 class="section-title">Localisation & Proximités</h2>
+        <h2 class="section-title">Localisation &amp; Proximités</h2>
         <p class="section-subtitle">À deux pas de tout ce qu'Annecy a à offrir</p>
         <div class="location-grid">
             <div class="location-item">
@@ -530,7 +420,7 @@
                 </ul>
             </div>
             <div class="location-item">
-                <h4>🏊 Lac & Montagnes</h4>
+                <h4>🏊 Lac &amp; Montagnes</h4>
                 <ul>
                     <li>&#x2022; Lac d'Annecy : 15 min à pied</li>
                     <li>&#x2022; Plage d'Albigny : 2 km</li>
@@ -560,57 +450,32 @@
     </div>
 </section>
 
-<!-- Tarifs + Calendrier -->
-
-<!-- Carte de localisation -->
+<!-- Location map -->
 <div style="width:100%;padding:2rem 2rem 0;background:var(--sand);text-align:center;">
     <img src="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/images/annecy/carte-localisation-2.png"
          alt="Carte de localisation — Les Terrasses d'Annecy"
          style="max-width:650px;width:100%;height:auto;display:inline-block;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.1);">
 </div>
+
+<!-- Pricing + Calendar -->
 <section id="tarifs" class="pricing" style="max-width:100%;">
     <div style="max-width:1200px;margin:0 auto;padding:5rem 2rem;">
         <h2 class="section-title">Tarifs</h2>
         <p class="section-subtitle">Location à la semaine — tout inclus (linge, ménage, garage)</p>
-
         <div class="pricing-cards">
-            <div class="season-card low">
-                <div class="season-label">Basse saison</div>
-                <div class="season-price">390€</div>
-                <div class="season-price-unit">la semaine</div>
-                <div class="season-period">Octobre → Avril</div>
-            </div>
-            <div class="season-card mid">
-                <div class="season-label">Moyenne saison</div>
-                <div class="season-price">460€</div>
-                <div class="season-price-unit">la semaine</div>
-                <div class="season-period">Mai · Juin · Septembre</div>
-            </div>
-            <div class="season-card high">
-                <div class="season-label">Haute saison</div>
-                <div class="season-price">540€</div>
-                <div class="season-price-unit">la semaine</div>
-                <div class="season-period">Juillet · Août</div>
-            </div>
-            <div class="season-card very-high">
-                <div class="season-label">Très haute saison</div>
-                <div class="season-price">620€</div>
-                <div class="season-price-unit">la semaine</div>
-                <div class="season-period">Semaine du Festival<br>d'animation (juin)</div>
-            </div>
+            <div class="season-card low"><div class="season-label">Basse saison</div><div class="season-price">390€</div><div class="season-price-unit">la semaine</div><div class="season-period">Octobre → Avril</div></div>
+            <div class="season-card mid"><div class="season-label">Moyenne saison</div><div class="season-price">460€</div><div class="season-price-unit">la semaine</div><div class="season-period">Mai · Juin · Septembre</div></div>
+            <div class="season-card high"><div class="season-label">Haute saison</div><div class="season-price">540€</div><div class="season-price-unit">la semaine</div><div class="season-period">Juillet · Août</div></div>
+            <div class="season-card very-high"><div class="season-label">Très haute saison</div><div class="season-price">620€</div><div class="season-price-unit">la semaine</div><div class="season-period">Semaine du Festival<br>d'animation (juin)</div></div>
         </div>
-
         <div class="pricing-note">
             ✓ Garage inclus &nbsp;·&nbsp; Linge en option (30€) &nbsp;·&nbsp; Ménage final (50€ ou par vos soins)<br>
             <strong>Arrivée le samedi.</strong> La semaine du Festival d'animation est au tarif très haute saison.
         </div>
-
-        <!-- Calendrier -->
         <div style="margin-top:4rem;">
             <h3 style="text-align:center;color:var(--deep-blue);font-size:2rem;margin-bottom:0.5rem;">📅 Calendrier des Disponibilités</h3>
             <p style="text-align:center;color:#666;margin-bottom:0.5rem;">Cliquez sur un <strong>samedi</strong> pour sélectionner votre semaine</p>
             <p style="text-align:center;color:var(--turquoise);font-weight:700;font-size:1.05rem;margin-bottom:2rem;">⏱️ Location à la semaine uniquement (samedi → samedi)</p>
-
             <div class="calendar-controls">
                 <div class="year-selector">
                     <button class="year-btn" onclick="previousYear()">← Année précédente</button>
@@ -624,9 +489,7 @@
                     <div class="legend-item"><div class="legend-color legend-selected"></div><span>Sélectionné</span></div>
                 </div>
             </div>
-
             <div class="months-grid" id="monthsGrid"></div>
-
             <div class="selection-info" id="selectionInfo" style="display:none;">
                 <div id="priceBox" style="background:linear-gradient(135deg,var(--turquoise),var(--mediterranean-blue));color:white;padding:1.5rem;border-radius:12px;margin-bottom:1.5rem;text-align:center;">
                     <div style="font-size:1rem;margin-bottom:0.4rem;opacity:0.9;">💰 Tarif de votre séjour</div>
@@ -668,7 +531,7 @@
     </form>
 </section>
 
-<!-- Navigation entre studios -->
+<!-- Studio navigation -->
 <div class="studio-nav">
     <p style="color:var(--deep-blue);font-weight:600;margin-bottom:0.5rem;">Découvrir nos autres studios</p>
     <div class="studio-nav-links">
@@ -681,11 +544,10 @@
 <footer>
     <p>&copy; 2026 Les Terrasses d'Annecy — Tous droits réservés</p>
     <p>Annecy, Haute-Savoie</p>
-    <p><a href="index-FR.html">← Retour à l'accueil</a></p>
+    <p><a href="https://kervan-apart.github.io/Les-terrasses-d-Annecy-/index-FR.html">← Retour à l'accueil</a></p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    // Smooth scroll
+<script>
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', function(e) {
             e.preventDefault();
@@ -700,9 +562,7 @@
         this.reset();
     });
 
-    // ============================================
     // SLIDER
-    // ============================================
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const totalSlides = slides.length;
@@ -722,29 +582,19 @@
     function goToSlide(i) { currentSlide = i; updateSlider(); }
     setInterval(nextSlide, 5000);
 
-    // ============================================
-    // CALENDRIER — SEMAINE SAMEDI→SAMEDI
-    // ============================================
+    // CALENDAR
     let currentCalendarYear = 2026;
     let selectedCheckIn = null;
-
-    // Samedis réservés — à mettre à jour avec vos réservations (date du samedi d'arrivée)
     const bookedSaturdays = [];
-
-    // Semaine du Festival d'animation — à mettre à jour chaque année
-    // 2026 : Festival du 8 au 13 juin → arrivée samedi 6 juin
     const festivalSaturdays = ['2026-06-06'];
-
     const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
     const dayNames = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
-
     const PRICING = {
         LOW:       { price: 390,  label: 'Basse saison (oct–avr)' },
         MID:       { price: 460,  label: 'Moyenne saison (mai, juin, sept)' },
         HIGH:      { price: 540,  label: 'Haute saison (juil–août)' },
         VERY_HIGH: { price: 620,  label: 'Très haute saison — Festival d\'animation' }
     };
-
     function getSeason(satStr) {
         if (festivalSaturdays.includes(satStr)) return PRICING.VERY_HIGH;
         const m = parseInt(satStr.split('-')[1]);
@@ -752,33 +602,27 @@
         if (m === 5 || m === 6 || m === 9) return PRICING.MID;
         return PRICING.LOW;
     }
-
     function formatDate(date) {
         return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
     }
-
     function formatDateFr(dateStr) {
         const d = new Date(dateStr + 'T12:00:00');
         return `${d.getDate()} ${monthNames[d.getMonth()]} ${d.getFullYear()}`;
     }
-
     function addDays(dateStr, n) {
         const d = new Date(dateStr + 'T12:00:00');
         d.setDate(d.getDate() + n);
         return formatDate(d);
     }
-
     function initCalendar() {
         document.getElementById('currentYear').textContent = currentCalendarYear;
         renderCalendar();
     }
-
     function renderCalendar() {
         const grid = document.getElementById('monthsGrid');
         grid.innerHTML = '';
         for (let m = 0; m < 12; m++) grid.appendChild(createMonthCalendar(currentCalendarYear, m));
     }
-
     function createMonthCalendar(year, month) {
         const div = document.createElement('div');
         div.className = 'month-calendar';
@@ -786,72 +630,41 @@
         header.className = 'month-header';
         header.innerHTML = `<div class="month-name">${monthNames[month]} ${year}</div>`;
         div.appendChild(header);
-
         const wk = document.createElement('div');
         wk.className = 'weekdays';
         dayNames.forEach(d => { const e = document.createElement('div'); e.className = 'weekday'; e.textContent = d; wk.appendChild(e); });
         div.appendChild(wk);
-
         const daysGrid = document.createElement('div');
         daysGrid.className = 'days';
-
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const today = new Date(); today.setHours(0,0,0,0);
-
         for (let i = 0; i < firstDay; i++) {
             const e = document.createElement('div'); e.className = 'day empty'; daysGrid.appendChild(e);
         }
-
         const checkOut = selectedCheckIn ? addDays(selectedCheckIn, 7) : null;
-
         for (let day = 1; day <= daysInMonth; day++) {
             const date = new Date(year, month, day);
             const dateStr = formatDate(date);
             const isSat = date.getDay() === 6;
-
             const el = document.createElement('div');
             el.className = 'day';
             el.textContent = day;
-
-            if (date < today) {
-                el.classList.add('past');
-            } else if (isSat && bookedSaturdays.includes(dateStr)) {
-                el.classList.add('booked');
-                el.title = 'Semaine déjà réservée';
-            } else if (isSat && festivalSaturdays.includes(dateStr)) {
-                el.classList.add('festival');
-                el.title = 'Semaine du Festival — 620€';
-                el.onclick = () => selectWeek(dateStr);
-            } else if (isSat) {
-                el.classList.add('saturday');
-                el.onclick = () => selectWeek(dateStr);
-            } else {
-                el.classList.add('other');
-            }
-
-            // Surlignage semaine sélectionnée
+            if (date < today) { el.classList.add('past'); }
+            else if (isSat && bookedSaturdays.includes(dateStr)) { el.classList.add('booked'); el.title = 'Semaine déjà réservée'; }
+            else if (isSat && festivalSaturdays.includes(dateStr)) { el.classList.add('festival'); el.title = 'Semaine du Festival — 620€'; el.onclick = () => selectWeek(dateStr); }
+            else if (isSat) { el.classList.add('saturday'); el.onclick = () => selectWeek(dateStr); }
+            else { el.classList.add('other'); }
             if (selectedCheckIn) {
-                if (dateStr === selectedCheckIn || dateStr === checkOut) {
-                    el.classList.add('selected');
-                } else if (dateStr > selectedCheckIn && dateStr < checkOut) {
-                    el.classList.add('in-range');
-                }
+                if (dateStr === selectedCheckIn || dateStr === checkOut) { el.classList.add('selected'); }
+                else if (dateStr > selectedCheckIn && dateStr < checkOut) { el.classList.add('in-range'); }
             }
-
             daysGrid.appendChild(el);
         }
-
         div.appendChild(daysGrid);
         return div;
     }
-
-    function selectWeek(satStr) {
-        selectedCheckIn = satStr;
-        renderCalendar();
-        updateSelectionInfo();
-    }
-
+    function selectWeek(satStr) { selectedCheckIn = satStr; renderCalendar(); updateSelectionInfo(); }
     function updateSelectionInfo() {
         const info = document.getElementById('selectionInfo');
         if (!selectedCheckIn) { info.style.display = 'none'; return; }
@@ -867,28 +680,19 @@
         if (f) f.value = `${formatDateFr(selectedCheckIn)} → ${formatDateFr(checkOut)}`;
         if (p) p.value = `${season.price}€ — 1 semaine`;
     }
-
     function clearSelection() {
-        selectedCheckIn = null;
-        renderCalendar();
+        selectedCheckIn = null; renderCalendar();
         document.getElementById('selectionInfo').style.display = 'none';
-        const f = document.getElementById('dates');
-        const p = document.getElementById('totalPrice');
-        if (f) f.value = '';
-        if (p) p.value = '';
+        const f = document.getElementById('dates'); const p = document.getElementById('totalPrice');
+        if (f) f.value = ''; if (p) p.value = '';
     }
-
     function previousYear() { if (currentCalendarYear > 2026) { currentCalendarYear--; initCalendar(); } }
     function nextYear() { if (currentCalendarYear < 2028) { currentCalendarYear++; initCalendar(); } }
-
-    // Initialisation robuste - compatible Android
     function safeInitCalendar() {
         var grid = document.getElementById('monthsGrid');
-        if (grid && grid.children.length === 0) {
-            initCalendar();
-        }
+        if (grid && grid.children.length === 0) { initCalendar(); }
     }
-        document.addEventListener('DOMContentLoaded', safeInitCalendar);
+    document.addEventListener('DOMContentLoaded', safeInitCalendar);
     window.addEventListener('load', safeInitCalendar);
     setTimeout(safeInitCalendar, 500);
     setTimeout(safeInitCalendar, 1500);
