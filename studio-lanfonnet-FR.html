@@ -594,7 +594,7 @@
         LOW:       { price: 390,  label: 'Basse saison (oct–avr)' },
         MID:       { price: 460,  label: 'Moyenne saison (mai, juin, sept)' },
         HIGH:      { price: 540,  label: 'Haute saison (juil–août)' },
-        VERY_HIGH: { price: 620,  label: 'Très haute saison — Festival d\'animation' }
+        VERY_HIGH: { price: 620,  label: "Très haute saison — Festival d'animation" }
     };
     function getSeason(satStr) {
         if (festivalSaturdays.includes(satStr)) return PRICING.VERY_HIGH;
