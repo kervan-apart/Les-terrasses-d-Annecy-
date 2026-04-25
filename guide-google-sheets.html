@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guide — Google Sheets pour Les Terrasses d'Annecy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --blue: #1e5a8e;
+    --turquoise: #1b9aaa;
+    --sand: #f5e6d3;
+    --sunset: #ff6b35;
+    --green: #16a34a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: #f0f4f8; color: #333; line-height: 1.7; }
+
+.hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--turquoise) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+}
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 0.5rem; }
+.hero p { font-size: 1.1rem; opacity: 0.85; max-width: 600px; margin: 0 auto; }
+
+.container { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+.step-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.8rem 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    position: relative;
+}
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+.step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--turquoise);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.step-header h2 { font-family: 'DM Serif Display', serif; color: var(--blue); font-size: 1.3rem; }
+.step-card p { color: #555; margin-bottom: 0.8rem; }
+.step-card p:last-child { margin-bottom: 0; }
+
+.highlight {
+    background: #e8f8f9;
+    border-left: 4px solid var(--turquoise);
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: #1a5c6e;
+}
+.warning {
+    background: #fff8e1;
+    border-left: 4px solid #f59e0b;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 8px 8px 0;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+    color: #78350f;
+}
+
+/* Table preview */
+.table-preview {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.table-preview th {
+    background: #1a73e8;
+    color: white;
+    padding: 0.6rem 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+.table-preview td {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e0e0e0;
+    color: #333;
+}
+.table-preview tr:nth-child(even) td { background: #f8f9fa; }
+.table-preview .row-num { color: #999; font-size: 0.8rem; }
+.cell-blue { color: #1a73e8; font-weight: 600; }
+
+/* Screenshot mockup */
+.screen-mock {
+    background: #f1f3f4;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 1rem 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.screen-bar {
+    background: white;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.85rem;
+    color: #555;
+}
+.screen-dots { display: flex; gap: 5px; }
+.dot-r { width: 12px; height: 12px; border-radius: 50%; background: #ff5f56; }
+.dot-y { width: 12px; height: 12px; border-radius: 50%; background: #febc2e; }
+.dot-g { width: 12px; height: 12px; border-radius: 50%; background: #27c93f; }
+.screen-body { padding: 1rem 1.5rem; }
+
+/* Menu item */
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+.menu-item.active { background: #e8f0fe; color: #1a73e8; font-weight: 600; }
+.menu-item.highlight-item { background: #fce8e6; color: #d93025; font-weight: 600; }
+
+/* Code */
+.code { 
+    background: #1a1a2e; 
+    color: #7dd3fc; 
+    padding: 1rem 1.2rem; 
+    border-radius: 8px; 
+    font-family: 'Courier New', monospace; 
+    font-size: 0.9rem;
+    margin: 1rem 0;
+    word-break: break-all;
+}
+.code .highlight-code { color: #fbbf24; }
+.code .comment { color: #6b7280; }
+
+/* Success */
+.success-box {
+    background: linear-gradient(135deg, var(--blue), var(--turquoise));
+    color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+.success-box h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 0.8rem; }
+.success-box p { opacity: 0.9; margin-bottom: 0.5rem; }
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+}
+.btn-white { background: white; color: var(--blue); }
+
+/* Tabs */
+.sheet-tabs {
+    display: flex;
+    gap: 0.3rem;
+    margin: 1rem 0 0;
+}
+.sheet-tab {
+    padding: 0.4rem 1rem;
+    border-radius: 8px 8px 0 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #e0e0e0;
+    color: #555;
+}
+.sheet-tab.active { background: white; color: #1a73e8; }
+
+.checklist { list-style: none; margin: 1rem 0; }
+.checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    font-size: 0.95rem;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+}
+.checklist li:last-child { border: none; }
+.check { color: var(--green); font-weight: 700; font-size: 1.1rem; flex-shrink: 0; }
+
+@media (max-width: 600px) {
+    .hero h1 { font-size: 1.6rem; }
+    .step-card { padding: 1.2rem; }
+    .container { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🗓️ Guide de mise en place</h1>
+    <p>Gérer vos tarifs et réservations via Google Sheets — sans jamais toucher à GitHub</p>
+</div>
+
+<div class="container">
+
+    <!-- ÉTAPE 1 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">1</div>
+            <h2>Créer le Google Sheet</h2>
+        </div>
+        <p>Allez sur <strong>sheets.google.com</strong> et créez une nouvelle feuille. Nommez-la <strong>"Les Terrasses d'Annecy — Gestion"</strong>.</p>
+        <p>Ce fichier contiendra deux onglets : <strong>Tarifs</strong> et <strong>Reservations</strong>.</p>
+    </div>
+
+    <!-- ÉTAPE 2 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">2</div>
+            <h2>Créer l'onglet "Tarifs"</h2>
+        </div>
+        <p>Renommez le premier onglet en <strong>Tarifs</strong> (double-clic sur l'onglet en bas). Saisissez exactement ce tableau :</p>
+        <div class="sheet-tabs">
+            <div class="sheet-tab active">Tarifs</div>
+            <div class="sheet-tab">Reservations</div>
+        </div>
+        <table class="table-preview">
+            <tr>
+                <th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th>
+            </tr>
+            <tr>
+                <td class="row-num">1</td>
+                <td><strong>Studio</strong></td>
+                <td><strong>Basse</strong></td>
+                <td><strong>Moyenne</strong></td>
+                <td><strong>Haute</strong></td>
+                <td><strong>Festival</strong></td>
+            </tr>
+            <tr>
+                <td class="row-num">2</td>
+                <td>Semnoz</td>
+                <td class="cell-blue">390</td>
+                <td class="cell-blue">460</td>
+                <td class="cell-blue">540</td>
+                <td class="cell-blue">620</td>
+            </tr>
+            <tr>
+                <td class="row-num">3</td>
+                <td>Lanfonnet</td>
+                <td class="cell-blue">390</td>
+                <td class="cell-blue">460</td>
+                <td class="cell-blue">540</td>
+                <td class="cell-blue">620</td>
+            </tr>
+            <tr>
+                <td class="row-num">4</td>
+                <td>Parmelan</td>
+                <td class="cell-blue">380</td>
+                <td class="cell-blue">450</td>
+                <td class="cell-blue">530</td>
+                <td class="cell-blue">620</td>
+            </tr>
+        </table>
+        <div class="warning">⚠️ Les noms de studios en colonne A doivent être exactement : <strong>Semnoz</strong>, <strong>Lanfonnet</strong>, <strong>Parmelan</strong> (avec majuscule, sans accent).</div>
+    </div>
+
+    <!-- ÉTAPE 3 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">3</div>
+            <h2>Créer l'onglet "Reservations"</h2>
+        </div>
+        <p>Créez un deuxième onglet (bouton <strong>+</strong> en bas) et nommez-le <strong>Reservations</strong> (sans accent). Saisissez ce tableau :</p>
+        <div class="sheet-tabs">
+            <div class="sheet-tab">Tarifs</div>
+            <div class="sheet-tab active">Reservations</div>
+        </div>
+        <table class="table-preview">
+            <tr>
+                <th></th><th>A</th><th>B</th><th>C</th>
+            </tr>
+            <tr>
+                <td class="row-num">1</td>
+                <td><strong>Studio</strong></td>
+                <td><strong>Date</strong></td>
+                <td><strong>Statut</strong></td>
+            </tr>
+            <tr>
+                <td class="row-num">2</td>
+                <td>Semnoz</td>
+                <td class="cell-blue">2026-06-07</td>
+                <td>réservé</td>
+            </tr>
+            <tr>
+                <td class="row-num">3</td>
+                <td><em style="color:#999">Exemple à remplacer…</em></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="highlight">📅 La date en colonne B est toujours un <strong>samedi</strong>, au format <strong>AAAA-MM-JJ</strong> (ex : 2026-07-12). C'est la date d'arrivée.</div>
+        <p>Pour ajouter une réservation : ajoutez simplement une nouvelle ligne. Pour la supprimer : effacez la ligne.</p>
+    </div>
+
+    <!-- ÉTAPE 4 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">4</div>
+            <h2>Publier le fichier sur le web</h2>
+        </div>
+        <p>C'est l'étape clé. Elle permet au site de lire vos données. Faites-la <strong>une seule fois</strong>.</p>
+
+        <div class="screen-mock">
+            <div class="screen-bar">
+                <div class="screen-dots"><div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div></div>
+                <span>📊 Les Terrasses d'Annecy — Gestion</span>
+            </div>
+            <div class="screen-body">
+                <div class="menu-item">📄 Fichier</div>
+                <div style="padding-left:1.5rem;">
+                    <div class="menu-item">Nouveau</div>
+                    <div class="menu-item">Ouvrir</div>
+                    <div class="menu-item">Importer</div>
+                    <div class="menu-item highlight-item">→ Partager &gt; Publier sur le web…</div>
+                </div>
+            </div>
+        </div>
+
+        <p>Dans la fenêtre qui s'ouvre :</p>
+        <ul class="checklist">
+            <li><span class="check">✓</span> Sélectionnez <strong>"Tout le document"</strong></li>
+            <li><span class="check">✓</span> Format : <strong>"Valeurs séparées par des virgules (.csv)"</strong></li>
+            <li><span class="check">✓</span> Cliquez <strong>"Publier"</strong></li>
+            <li><span class="check">✓</span> Confirmez en cliquant <strong>"OK"</strong></li>
+        </ul>
+        <div class="warning">⚠️ Ne partagez pas l'URL qui s'affiche — elle ne sera pas utile. On utilisera une URL différente à l'étape suivante.</div>
+    </div>
+
+    <!-- ÉTAPE 5 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">5</div>
+            <h2>Récupérer l'identifiant du fichier</h2>
+        </div>
+        <p>Regardez l'URL de votre Google Sheet dans la barre d'adresse du navigateur :</p>
+        <div class="code">
+            https://docs.google.com/spreadsheets/d/<span class="highlight-code">1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms</span>/edit
+        </div>
+        <p>La partie surlignée en jaune est votre <strong>identifiant de fichier</strong>. Copiez-la.</p>
+        <div class="highlight">💡 C'est une longue suite de lettres et chiffres entre les deux <code>/d/</code> et <code>/edit</code>.</div>
+    </div>
+
+    <!-- ÉTAPE 6 -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num">6</div>
+            <h2>Mettre l'identifiant dans le fichier config.js</h2>
+        </div>
+        <p>Sur GitHub, ouvrez le fichier <strong>config.js</strong> (qui sera créé par votre développeur). Vous verrez cette ligne :</p>
+        <div class="code">
+            const SHEET_ID = '<span class="highlight-code">COLLER_VOTRE_ID_ICI</span>';
+        </div>
+        <p>Remplacez <code>COLLER_VOTRE_ID_ICI</code> par votre identifiant copié à l'étape 5, puis cliquez <strong>Commit changes</strong>.</p>
+        <div class="highlight">✅ C'est la seule manipulation GitHub de tout ce guide. Après ça, tout se passe dans Google Sheets.</div>
+    </div>
+
+    <!-- ÉTAPE 7 — UTILISATION QUOTIDIENNE -->
+    <div class="step-card">
+        <div class="step-header">
+            <div class="step-num" style="background:var(--green)">✓</div>
+            <h2>Utilisation quotidienne — C'est tout !</h2>
+        </div>
+        <p>Une fois la mise en place terminée, voici tout ce que vous avez à faire pour gérer votre site :</p>
+
+        <p><strong>Modifier un tarif :</strong> Ouvrez Google Sheets → onglet Tarifs → changez le chiffre → Entrée. C'est immédiatement pris en compte sur le site.</p>
+
+        <p><strong>Ajouter une réservation :</strong> Onglet Reservations → nouvelle ligne → saisissez le studio, la date du samedi d'arrivée, "réservé" → Entrée.</p>
+
+        <p><strong>Supprimer une réservation :</strong> Effacez simplement la ligne correspondante.</p>
+
+        <div class="highlight">💡 Vous pouvez modifier le Google Sheet depuis votre téléphone, une tablette, n'importe quel ordinateur. Le site se met à jour automatiquement à chaque visite d'un visiteur.</div>
+    </div>
+
+    <div class="success-box">
+        <h2>🎉 Mise en place terminée !</h2>
+        <p>Le site Les Terrasses d'Annecy lit maintenant ses données depuis Google Sheets.</p>
+        <p>Plus jamais besoin de toucher à GitHub pour gérer les tarifs et les disponibilités.</p>
+    </div>
+
+</div>
+</body>
+</html>
