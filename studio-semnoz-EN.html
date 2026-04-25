@@ -234,6 +234,7 @@
             .slide img { object-fit: contain; }
         }
     </style>
+    <script src="config.js"></script>
 </head>
 <body>
 
@@ -682,9 +683,56 @@
     }
     function previousYear() { if (currentCalendarYear > 2026) { currentCalendarYear--; initCalendar(); } }
     function nextYear() { if (currentCalendarYear < 2028) { currentCalendarYear++; initCalendar(); } }
+
+    // ============================================
+    // GOOGLE SHEETS — Chargement des données
+    // ============================================
+    const STUDIO_NAME = 'Semnoz';
+
+    function parseCSV(text) {
+        return text.trim().split('\n').map(row => {
+            const cells = []; let cur = '', inQ = false;
+            for (let c of row) {
+                if (c === '"') { inQ = !inQ; }
+                else if (c === ',' && !inQ) { cells.push(cur.trim()); cur = ''; }
+                else { cur += c; }
+            }
+            cells.push(cur.trim()); return cells;
+        });
+    }
+
+    async function loadSheetData() {
+        try {
+            if (typeof SHEET_ID === 'undefined' || SHEET_ID === 'COLLER_VOTRE_ID_ICI') return;
+            const base = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv`;
+            const tr = await fetch(base + '&sheet=Tarifs');
+            if (tr.ok) {
+                const rows = parseCSV(await tr.text());
+                const row = rows.find(r => r[0].trim().toLowerCase() === STUDIO_NAME.toLowerCase());
+                if (row && row.length >= 5) {
+                    PRICING.LOW.price       = parseInt(row[1]) || PRICING.LOW.price;
+                    PRICING.MID.price       = parseInt(row[2]) || PRICING.MID.price;
+                    PRICING.HIGH.price      = parseInt(row[3]) || PRICING.HIGH.price;
+                    PRICING.VERY_HIGH.price = parseInt(row[4]) || PRICING.VERY_HIGH.price;
+                }
+            }
+            const rr = await fetch(base + '&sheet=Reservations');
+            if (rr.ok) {
+                const rows = parseCSV(await rr.text());
+                bookedSaturdays.length = 0;
+                rows.slice(1).forEach(r => {
+                    if (r[0] && r[0].trim().toLowerCase() === STUDIO_NAME.toLowerCase() && r[1] && r[1].trim())
+                        bookedSaturdays.push(r[1].trim());
+                });
+            }
+            renderCalendar();
+        } catch(e) { /* Fallback silencieux */ }
+    }
+
     function safeInitCalendar() {
         var grid = document.getElementById('monthsGrid');
-        if (grid && grid.children.length === 0) { initCalendar(); }
+        if (grid && grid.children.length === 0) { initCalendar(); loadSheetData(); }
+    }
     }
     document.addEventListener('DOMContentLoaded', safeInitCalendar);
     window.addEventListener('load', safeInitCalendar);
