@@ -646,8 +646,15 @@
             const el = document.createElement('div');
             el.className = 'day';
             el.textContent = day;
-            if (date < today) { el.classList.add('past'); }
-            else if (isSat && bookedSaturdays.includes(dateStr)) { el.classList.add('booked'); el.title = 'Semaine déjà réservée'; }
+            const isBooked = bookedSaturdays.includes(dateStr);
+            const isInBookedWeek = !isSat && bookedSaturdays.some(sat => {
+                const s = new Date(sat + 'T12:00:00');
+                const e = new Date(sat + 'T12:00:00'); e.setDate(e.getDate() + 7);
+                return date > s && date < e;
+            });
+            if (isBooked) { el.classList.add('booked'); }
+            else if (isInBookedWeek) { el.classList.add('booked-range'); }
+            else if (date < today) { el.classList.add('past'); }
             else if (isSat && festivalSaturdays.includes(dateStr)) { el.classList.add('festival'); el.title = 'Semaine du Festival — 620€'; el.onclick = () => selectWeek(dateStr); }
             else if (isSat) { el.classList.add('saturday'); el.onclick = () => selectWeek(dateStr); }
             else { el.classList.add('other'); }
