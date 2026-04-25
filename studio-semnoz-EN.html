@@ -743,7 +743,6 @@
         var grid = document.getElementById('monthsGrid');
         if (grid && grid.children.length === 0) { initCalendar(); loadSheetData(); }
     }
-    }
     document.addEventListener('DOMContentLoaded', safeInitCalendar);
     window.addEventListener('load', safeInitCalendar);
     setTimeout(safeInitCalendar, 500);
