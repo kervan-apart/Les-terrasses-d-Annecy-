@@ -707,6 +707,16 @@
         });
     }
 
+
+    function updatePriceCards() {
+        const cards = document.querySelectorAll('.season-card');
+        if (cards.length < 4) return;
+        const prices = [PRICING.LOW.price, PRICING.MID.price, PRICING.HIGH.price, PRICING.VERY_HIGH.price];
+        cards.forEach((card, i) => {
+            const el = card.querySelector('.season-price');
+            if (el && prices[i]) el.textContent = prices[i] + '€';
+        });
+    }
     async function loadSheetData() {
         try {
             if (typeof URL_TARIFS === 'undefined') return;
@@ -731,6 +741,7 @@
                 });
             }
             renderCalendar();
+            updatePriceCards();
         } catch(e) { /* Fallback silencieux */ }
     }
 
