@@ -167,6 +167,7 @@
         .day.empty { cursor: default; border: none; }
         .day.past { color: #ccc; cursor: not-allowed; background: #f9f9f9; }
         .day.booked { background: #ff7f7f; color: white; cursor: not-allowed; font-weight: 600; border-color: #ff7f7f; }
+        .day.booked-range { background: #ff9999; color: white; cursor: not-allowed; border-color: #ff7f7f; font-weight: 600; }
         .day.festival { background: var(--terracotta); color: white; cursor: pointer; font-weight: 600; border-color: var(--terracotta); }
         .day.selected { background: var(--turquoise); color: white; font-weight: 700; border-color: var(--turquoise); }
         .day.in-range { background: rgba(27,154,170,0.2); border-color: var(--turquoise); }
@@ -634,8 +635,15 @@
             const el = document.createElement('div');
             el.className = 'day';
             el.textContent = day;
-            if (date < today) { el.classList.add('past'); }
-            else if (isSat && bookedSaturdays.includes(dateStr)) { el.classList.add('booked'); el.title = 'Week already booked'; }
+            const isBooked = bookedSaturdays.includes(dateStr);
+            const isInBookedWeek = !isSat && bookedSaturdays.some(sat => {
+                const s = new Date(sat + 'T12:00:00');
+                const e = new Date(sat + 'T12:00:00'); e.setDate(e.getDate() + 7);
+                return date > s && date < e;
+            });
+            if (isBooked) { el.classList.add('booked'); }
+            else if (isInBookedWeek) { el.classList.add('booked-range'); }
+            else if (date < today) { el.classList.add('past'); }
             else if (isSat && festivalSaturdays.includes(dateStr)) { el.classList.add('festival'); el.title = 'Festival week — €620'; el.onclick = () => selectWeek(dateStr); }
             else if (isSat) { el.classList.add('saturday'); el.onclick = () => selectWeek(dateStr); }
             else { el.classList.add('other'); }
