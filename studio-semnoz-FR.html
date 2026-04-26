@@ -470,7 +470,7 @@
         </div>
         <div style="margin-top:4rem;">
             <h3 style="text-align:center;color:var(--deep-blue);font-size:2rem;margin-bottom:0.5rem;">📅 Calendrier des Disponibilités</h3>
-            <p style="text-align:center;color:#666;margin-bottom:0.5rem;">Cliquez sur un <strong>samedi</strong> pour sélectionner votre semaine</p>
+            <p style="text-align:center;color:#666;margin-bottom:0.5rem;">Cliquez sur le <strong>samedi d'arrivée</strong>, puis sur le <strong>samedi de fin</strong> pour sélectionner plusieurs semaines</p>
             <p style="text-align:center;color:var(--turquoise);font-weight:700;font-size:1.05rem;margin-bottom:2rem;">⏱️ Location à la semaine uniquement (samedi → samedi)</p>
             <div class="calendar-controls">
                 <div class="year-selector">
@@ -495,7 +495,7 @@
                 <h3>📅 Votre séjour</h3>
                 <div class="date-display">Arrivée (samedi) : <strong id="checkInDate">-</strong></div>
                 <div class="date-display">Départ (samedi) : <strong id="checkOutDate">-</strong></div>
-                <div class="date-display">Durée : <strong>1 semaine (7 nuits)</strong></div>
+                <div class="date-display">Durée : <strong id="durationDisplay">1 semaine (7 nuits)</strong></div>
                 <button class="clear-btn" onclick="clearSelection()">Effacer la sélection</button>
                 <a href="#contact" class="cta-button" style="margin-top:1rem;display:inline-block;">✉️ Demande de réservation</a>
             </div>
@@ -581,6 +581,7 @@
     // CALENDAR
     let currentCalendarYear = 2026;
     let selectedCheckIn = null;
+    let selectedCheckOut = null;
     const bookedSaturdays = [];
     const festivalSaturdays = ['2026-06-06'];
     const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
@@ -652,39 +653,78 @@
                 const e = new Date(sat + 'T12:00:00'); e.setDate(e.getDate() + 7);
                 return date > s && date < e;
             });
-            if (isBooked) { el.classList.add('booked'); }
+            if (isBooked) {
+                el.classList.add('booked');
+                // Permettre le clic sur un samedi réservé comme samedi de FIN seulement
+                if (isSat && selectedCheckIn && !selectedCheckOut) {
+                    el.style.cursor = 'pointer';
+                    el.onclick = () => selectWeek(dateStr);
+                }
+            }
             else if (isInBookedWeek) { el.classList.add('booked-range'); }
             else if (date < today) { el.classList.add('past'); }
             else if (isSat && festivalSaturdays.includes(dateStr)) { el.classList.add('festival'); el.title = 'Semaine du Festival — 620€'; el.onclick = () => selectWeek(dateStr); }
             else if (isSat) { el.classList.add('saturday'); el.onclick = () => selectWeek(dateStr); }
             else { el.classList.add('other'); }
             if (selectedCheckIn) {
-                if (dateStr === selectedCheckIn || dateStr === checkOut) { el.classList.add('selected'); }
-                else if (dateStr > selectedCheckIn && dateStr < checkOut) { el.classList.add('in-range'); }
+                const endSat = selectedCheckOut || addDays(selectedCheckIn, 7);
+                if (dateStr === selectedCheckIn || dateStr === endSat) { el.classList.add('selected'); }
+                else if (dateStr > selectedCheckIn && dateStr < endSat) { el.classList.add('in-range'); }
             }
             daysGrid.appendChild(el);
         }
         div.appendChild(daysGrid);
         return div;
     }
-    function selectWeek(satStr) { selectedCheckIn = satStr; renderCalendar(); updateSelectionInfo(); }
+    function selectWeek(satStr) {
+        if (!selectedCheckIn || (selectedCheckIn && selectedCheckOut)) {
+            // Premier clic : début de sélection
+            selectedCheckIn = satStr;
+            selectedCheckOut = null;
+        } else {
+            // Deuxième clic : fin de sélection
+            if (satStr <= selectedCheckIn) {
+                // Clic avant ou sur le début : recommencer
+                selectedCheckIn = satStr;
+                selectedCheckOut = null;
+            } else {
+                selectedCheckOut = satStr;
+            }
+        }
+        renderCalendar();
+        updateSelectionInfo();
+    }
     function updateSelectionInfo() {
         const info = document.getElementById('selectionInfo');
         if (!selectedCheckIn) { info.style.display = 'none'; return; }
-        const checkOut = addDays(selectedCheckIn, 7);
-        const season = getSeason(selectedCheckIn);
+        const endSat = selectedCheckOut || addDays(selectedCheckIn, 7);
+        // Calculer le nombre de semaines
+        const d1 = new Date(selectedCheckIn + 'T12:00:00');
+        const d2 = new Date(endSat + 'T12:00:00');
+        const nbWeeks = Math.round((d2 - d1) / (7 * 24 * 3600 * 1000));
+        // Calculer le prix total semaine par semaine
+        let totalPrice = 0;
+        let priceDetail = [];
+        for (let w = 0; w < nbWeeks; w++) {
+            const wSat = addDays(selectedCheckIn, w * 7);
+            const season = getSeason(wSat);
+            totalPrice += season.price;
+            priceDetail.push(`${season.price}€`);
+        }
+        const checkOutDisplay = endSat;
         document.getElementById('checkInDate').textContent = formatDateFr(selectedCheckIn);
-        document.getElementById('checkOutDate').textContent = formatDateFr(checkOut);
-        document.getElementById('totalPriceDisplay').textContent = `${season.price}€`;
-        document.getElementById('priceBreakdown').textContent = season.label;
+        document.getElementById('checkOutDate').textContent = formatDateFr(checkOutDisplay);
+        document.getElementById('totalPriceDisplay').textContent = `${totalPrice}€`;
+        const label = nbWeeks === 1 ? '1 semaine' : `${nbWeeks} semaines`;
+        document.getElementById('priceBreakdown').textContent = `${label} — ${priceDetail.join(' + ')}`;
         info.style.display = 'block';
         const f = document.getElementById('dates');
         const p = document.getElementById('totalPrice');
-        if (f) f.value = `${formatDateFr(selectedCheckIn)} → ${formatDateFr(checkOut)}`;
-        if (p) p.value = `${season.price}€ — 1 semaine`;
+        if (f) f.value = `${formatDateFr(selectedCheckIn)} → ${formatDateFr(checkOutDisplay)}`;
+        if (p) p.value = `${totalPrice}€ — ${label}`;
     }
     function clearSelection() {
-        selectedCheckIn = null; renderCalendar();
+        selectedCheckIn = null; selectedCheckOut = null; renderCalendar();
         document.getElementById('selectionInfo').style.display = 'none';
         const f = document.getElementById('dates'); const p = document.getElementById('totalPrice');
         if (f) f.value = ''; if (p) p.value = '';
