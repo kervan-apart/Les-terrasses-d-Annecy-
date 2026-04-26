@@ -759,6 +759,12 @@
     }
     document.addEventListener('DOMContentLoaded', safeInitCalendar);
     window.addEventListener('load', safeInitCalendar);
+    window.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            initCalendar();
+            loadSheetData();
+        }
+    });
     setTimeout(safeInitCalendar, 500);
     setTimeout(safeInitCalendar, 1500);
 </script>
