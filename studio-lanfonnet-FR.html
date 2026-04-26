@@ -653,7 +653,14 @@
                 const e = new Date(sat + 'T12:00:00'); e.setDate(e.getDate() + 7);
                 return date > s && date < e;
             });
-            if (isBooked) { el.classList.add('booked'); }
+            if (isBooked) {
+                el.classList.add('booked');
+                // Permettre le clic sur un samedi réservé comme samedi de FIN seulement
+                if (isSat && selectedCheckIn && !selectedCheckOut) {
+                    el.style.cursor = 'pointer';
+                    el.onclick = () => selectWeek(dateStr);
+                }
+            }
             else if (isInBookedWeek) { el.classList.add('booked-range'); }
             else if (date < today) { el.classList.add('past'); }
             else if (isSat && festivalSaturdays.includes(dateStr)) { el.classList.add('festival'); el.title = 'Semaine du Festival — 620€'; el.onclick = () => selectWeek(dateStr); }
