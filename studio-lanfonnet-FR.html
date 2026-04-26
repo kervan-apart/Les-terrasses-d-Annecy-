@@ -668,10 +668,8 @@
             else { el.classList.add('other'); }
             if (selectedCheckIn) {
                 const endSat = selectedCheckOut || addDays(selectedCheckIn, 7);
-                const finalCheckOut = addDays(endSat, 7);
                 if (dateStr === selectedCheckIn || dateStr === endSat) { el.classList.add('selected'); }
-                else if (dateStr > selectedCheckIn && dateStr <= endSat) { el.classList.add('selected'); }
-                else if (dateStr > selectedCheckIn && dateStr < finalCheckOut) { el.classList.add('in-range'); }
+                else if (dateStr > selectedCheckIn && dateStr < endSat) { el.classList.add('in-range'); }
             }
             daysGrid.appendChild(el);
         }
@@ -713,7 +711,7 @@
             totalPrice += season.price;
             priceDetail.push(`${season.price}€`);
         }
-        const checkOutDisplay = addDays(endSat, 7);
+        const checkOutDisplay = endSat;
         document.getElementById('checkInDate').textContent = formatDateFr(selectedCheckIn);
         document.getElementById('checkOutDate').textContent = formatDateFr(checkOutDisplay);
         document.getElementById('totalPriceDisplay').textContent = `${totalPrice}€`;
